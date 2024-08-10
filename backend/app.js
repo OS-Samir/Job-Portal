@@ -3,6 +3,7 @@ import express from "express"; // express package imported
 import { config } from "dotenv";// dotenv imported
 import cookieParser from "cookie-parser";
 import {connection} from "./database/connection.js";
+import { errorMiddleware } from "./database/middleware/error.js";
 
 
 const app = express(); // instance of express
@@ -20,4 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 connection();
+
+app.use(errorMiddleware)
+
 export default app;
