@@ -1,6 +1,7 @@
 import {catchAsyncErrors} from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../middleware/error.js";
-import {User} from "../models/userSchema.js"
+import {User} from "../models/userSchema.js";
+import {v2 as cloudinary} from "cloudinary";
 
 export const register = catchAsyncErrors(async(req, res, next) => {
     try {
@@ -35,11 +36,29 @@ export const register = catchAsyncErrors(async(req, res, next) => {
             address, 
             password, 
             role, 
+            niches: {
             firstNiche, 
             secondNiche, 
             thirdNiche, 
-            coverLetter 
+            },
+            coverLetter,  
+        };
+        if(req.files && req.files.resume) {
+            const {resume} = req.files;
+            if(resume) {
+                try {
+                    const cloudinaryResponse = await cloudinary.uploader.upload(resume.tempFilePath, 
+                        {folder: "Job_Seekers_Resume"}
+                        )
+                        if(!cloudinaryResponse || cloudinaryResponse.error) {
+                            return next (new ErrorHandler("Failed to upload resume to cloud", 500));
+                        }
+                } catch(error) {
+
+                }
+            }
         }
+        
 
     } catch (error) {
 
