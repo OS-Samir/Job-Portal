@@ -5,7 +5,7 @@ export const connection = () => {
         dbName: "JOB_PORTAL_WITH_AUTOMATION"
     }).then(() => {
         console.log("connected to database");
-    }).catch(err=> {
-        console.log(`error connecting to database: ${err}`);
+    }).catch(error=> {
+        console.log(`error connecting to database: ${error}`);
     })
 }
