@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import jwt from "jwt";
+import jwt from "jsonwebtoken";
 import validator from "validator";
-import { type } from "express/lib/response";
+// import { type } from "express/lib/response";
 
 const userSchema = new mongoose.Schema({
     name: {

@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import {connection} from "./database/connection.js";
 import { errorMiddleware } from "./middleware/error.js";
 import fileUpload from 'express-fileupload';
-import userRouter from "./routes/userRouter.js";
+import userRouter from "./routes/userRouter.js"
 
 
 
@@ -30,6 +30,7 @@ app.use(
 })
 );
 app.use("/api/v1/user", userRouter);
+
 connection();
 
 app.use(errorMiddleware)
