@@ -24,8 +24,8 @@ export const register = catchAsyncErrors(async(req, res, next) => {
             return next(new ErrorHandler("Please provide your preferred job niches", 400))
 
         }
-        const exsitingUser = await User.find({email});
-        if(exsitingUser) {
+        const existingUser = await User.find({email});
+        if(existingUser) {
             return next(new ErrorHandler("Email is already registered", 400))
 
         }
