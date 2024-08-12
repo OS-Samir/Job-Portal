@@ -56,15 +56,19 @@ export const register = catchAsyncErrors(async(req, res, next) => {
                         userData.resume = {
                             public_id : cloudinaryResponse.public_id,
                             url: cloudinaryResponse.secure_url
-                        }
+                        };
                 } catch(error) {
                         return next (new ErrorHandler("Failed to upload resume to cloud", 500));
                 }
             }
         }
         
-
+        const user = await User.create(userData);
+        res.status(201).json({
+            success: true,
+            message: "User created successfully"
+        })
     } catch (error) {
-
+        next(error);
     }
 })
