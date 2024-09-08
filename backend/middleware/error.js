@@ -22,6 +22,7 @@
     if (err.name === "JsonWebTokenError") {
         const message = `Json Web Token is invalid, try again`;
         err = new ErrorHandler(message, 400)
+        // console.error(err)
     }
 
     if (err.name === "TokenExpiredError") {
