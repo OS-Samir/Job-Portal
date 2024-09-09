@@ -13,7 +13,7 @@ const app = express(); // instance of express
 config({ path: "./config/config.env" }); // Load the environment variables here from env file
 
 app.use(cors({
-    origin: ["process.env.FRONTEND_URL"],
+    origin: [process.env.FRONTEND_URL],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 })
