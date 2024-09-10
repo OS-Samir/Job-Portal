@@ -26,7 +26,7 @@
     }
 
     if (err.name === "TokenExpiredError") {
-        const message = `Json Web Token expired, login again`;
+        const message = `Session expired, login again`;
         err = new ErrorHandler(message, 400)
     }
 
