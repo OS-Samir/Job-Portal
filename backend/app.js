@@ -10,7 +10,7 @@ import userRouter from "./routes/userRouter.js"
 
 
 const app = express(); // instance of express
-config({ path: "./config/config.env" }); // Load the environment variables here from env file
+config({ path: "./config/.env" }); // Load the environment variables here from env file
 
 app.use(cors({
     origin: [process.env.FRONTEND_URL],
