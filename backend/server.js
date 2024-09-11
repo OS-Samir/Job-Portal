@@ -9,5 +9,5 @@ cloudinary.v2.config({
 
 const port = process.env.PORT || 3000 ; 
 app.listen(process.env.PORT, () => {
-    console.log(`Server is started at port ${process.env.PORT}`);
+    console.log(`Server is started at port http://localhost:${process.env.PORT}`);
 })

@@ -20,7 +20,7 @@ export const register = catchAsyncErrors(async(req, res, next) => {
         if (!name || !email || !phone || !address || !password || !role){
             return next(new ErrorHandler("All fields are required", 400))
         }
-        if (role === "Job Seeker" && (!firstNiche || secondNiche || thirdNiche )) {
+        if (role === "Job Seeker" && (!firstNiche || !secondNiche || !thirdNiche )) {
             return next(new ErrorHandler("Please provide your preferred job niches", 400))
 
         }
