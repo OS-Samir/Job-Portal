@@ -58,7 +58,7 @@ export const register = catchAsyncErrors(async(req, res, next) => {
                             url: cloudinaryResponse.secure_url
                         };
                 } catch(error) { 
-                        return next (new ErrorHandler("Failed to upload resume to cloud", 500));
+                        return next (new ErrorHandler(`Failed to upload resume to cloud${error.message}`, 500));
                 }
             }
         }
