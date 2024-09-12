@@ -74,3 +74,15 @@ export const register = catchAsyncErrors(async(req, res, next) => {
     }
 })
 
+
+export const login = catchAsyncErrors(async(req, res, next) => {
+    const {role, email, password} = req.body; 
+    if (!role || !email || !password) {  return  next(new ErrorHandler("Every field should be filled", 400)
+)
+};
+
+const user = await User.findOne({email}).select("+password");
+if (!user) {
+    return next (new ErrorHandler("Either password or email is incorrect", 400))
+}
+})
