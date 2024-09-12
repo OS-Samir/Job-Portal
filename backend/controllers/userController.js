@@ -94,3 +94,13 @@ if(user.role !== role) {
 }
 sendToken(user, 200, res, "User logged in successfully")
 })
+
+export const logout = catchAsyncErrors(async(req, res, next) => {
+    res.status(200).cookie("token", "", {
+        expires: new Date(Date.now()),
+        httpOnly: true
+    }).json({
+        sucess: true,
+        message: "User logged out successfully"
+    })
+})
