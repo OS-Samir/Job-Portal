@@ -73,3 +73,4 @@ export const register = catchAsyncErrors(async(req, res, next) => {
         next(error);
     }
 })
+
