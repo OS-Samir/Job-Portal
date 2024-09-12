@@ -57,6 +57,7 @@ export const register = catchAsyncErrors(async(req, res, next) => {
                             public_id : cloudinaryResponse.public_id,
                             url: cloudinaryResponse.secure_url
                         };
+                        
                 } catch(error) { 
                         return next (new ErrorHandler(`Failed to upload resume to cloud${error.message}`, 500));
                 }
@@ -68,6 +69,7 @@ export const register = catchAsyncErrors(async(req, res, next) => {
             success: true,
             message: "User created successfully"
         })
+        
     } catch (error) {
         next(error);
     }
