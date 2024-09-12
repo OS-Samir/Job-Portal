@@ -85,4 +85,12 @@ const user = await User.findOne({email}).select("+password");
 if (!user) {
     return next (new ErrorHandler("Either password or email is incorrect", 400))
 }
+const isPasswordMatch = await user.comparePassword(password);
+if (!isPasswordMatch) {
+    return next(new ErrorHandler("Either password or email is incorrect", 400))
+}
+if(user.role !== role) {
+    return next(new ErrorHandler("Oops! user role doesn't match", 400))
+}
+sendToken(user, 200, res, "User logged in successfully")
 })
