@@ -114,3 +114,29 @@ export const getUser = catchAsyncErrors(async (req, res, next) => {
         user,
     })
 });
+
+export const updateProfile = catchAsyncErrors(async(req, res, next) => {
+
+
+   const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address,
+    coverLetter: req.body.coverLetter,
+    niches: {
+        firstNiche: req.body.firstNiche,
+        secondNiche: req.body.secondNiche, 
+        thirdNiche: req.body.thirdNiche
+    }
+   }
+
+   const {firstNiche, secondNiche, thirdNiche} = newUserData.niches;
+
+   if (req.user.role === "Job Seeker" && (!firstNiche || !secondNiche || !thirdNiche) ) {
+    return next (new ErrorHandler("Please provide your all preferred job niches", 400))
+   }
+   
+})
+
+
