@@ -4,6 +4,7 @@ import {User} from "../models/userSchema.js";
 import {v2 as cloudinary} from "cloudinary";
 import {sendToken} from "../utils/jwtToken.js"
 
+
 export const register = catchAsyncErrors(async(req, res, next) => {
     try {
         const {
@@ -104,3 +105,12 @@ export const logout = catchAsyncErrors(async(req, res, next) => {
         message: "User logged out successfully"
     })
 })
+
+
+export const getUser = catchAsyncErrors(async (req, res, next) => {
+    const user = req.user;
+    res.status(200).json({
+        sucess: true,
+        user,
+    })
+});
