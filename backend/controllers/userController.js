@@ -135,8 +135,39 @@ export const updateProfile = catchAsyncErrors(async(req, res, next) => {
 
    if (req.user.role === "Job Seeker" && (!firstNiche || !secondNiche || !thirdNiche) ) {
     return next (new ErrorHandler("Please provide your all preferred job niches", 400))
+   };
+
+   if (req.files) {
+    const {resume} = req.files;
+    if (resume) {
+        const currentResumeId = req.user.resume.public_id;
+        if (currentResumeId) {
+            await cloudinary.uploader.destroy(currentResumeId)
+    }
+        const newResume = await cloudinary.uploader.upload(resume.tempFilePath, {
+            folder: "JOb_Seekers_Resume"
+        })
+
+        newUserData.resume = {
+            public_id: newResume.public_id,
+            url: newResume.secure_url
+        };
    }
-   
+}
+   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false
+   });
+   res.status(200).json({
+    success: true,
+    user,
+    message: "profile updated successfully"
+   })
+
+
+
+
 })
 
 
