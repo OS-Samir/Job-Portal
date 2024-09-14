@@ -165,9 +165,10 @@ export const updateProfile = catchAsyncErrors(async(req, res, next) => {
     message: "profile updated successfully"
    })
 
-
-
-
 })
 
+
+export const updatedPassword = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.user.id).select("+password");
+})
 
