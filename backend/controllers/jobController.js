@@ -9,7 +9,7 @@ export const postJob = catchAsyncErrors(async (req, res, next) => {
        if (!title || !jobType || !location || !companyName || !introduction || !responsibilities || !qualifications || !salary || !jobNiche ){
         return next(new ErrorHandler ("Please fill out the required fields", 400))
        };
-       if ((personalWebsiteTitle || !personalWebsiteUrl) || (!personalWebsiteTitle && personalWebsiteUrl)) {
+       if ((personalWebsiteTitle && !personalWebsiteUrl) || (!personalWebsiteTitle && personalWebsiteUrl)) {
             return next(new ErrorHandler("Provide both website url and title or leave both blank", 400))
        }
 const postedBy = req.user._id;
