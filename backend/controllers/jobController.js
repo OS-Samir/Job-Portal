@@ -38,3 +38,6 @@ res.status(201).json({
 })
 
 })
+
+
+getAllJobs, getMyJobs, deleteJob, getSingleJob 
