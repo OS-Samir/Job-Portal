@@ -52,10 +52,15 @@ export const getAllJobs = catchAsyncErrors(async(req, res, next) => {
         query.$or = [
             {title: {$regex: searchKeyword, $options: "i"}},
             {companyName: {$regex: searchKeyword, $options: "i"}},
-            {introduction: {$regex: searchKeyword, $options: "i"}},
-
-        ]
+            {introduction: {$regex: searchKeyword, $options: "i"}}
+        ];
     }
+    const jobs = await Job.find(query);
+    res.status(200).json({
+        success: true,
+        jobs,
+        coount: jobs.length
+    })
 })
 
 export const getMyJobs = catchAsyncErrors(async(req, res, next) => {
