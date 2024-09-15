@@ -39,5 +39,33 @@ res.status(201).json({
 
 })
 
+export const getAllJobs = catchAsyncErrors(async(req, res, next) => {
+    const {city, niche, searchKeyword} = req.query;
+    const query = {};
+    if (city) {
+        query.location = city;
+    }
+    if(niche) {
+        query.jobNiche = niche;
+    }
+    if(searchKeyword) {
+        query.$or = [
+            {title: {$regex: searchKeyword, $options: "i"}},
+            {companyName: {$regex: searchKeyword, $options: "i"}},
+            {introduction: {$regex: searchKeyword, $options: "i"}},
 
-getAllJobs, getMyJobs, deleteJob, getSingleJob 
+        ]
+    }
+})
+
+export const getMyJobs = catchAsyncErrors(async(req, res, next) => {
+
+})
+export const deleteJob = catchAsyncErrors(async(req, res, next) => {
+
+})
+export const getASingleJob = catchAsyncErrors(async(req, res, next) => {
+
+})
+
+
