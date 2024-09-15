@@ -39,18 +39,18 @@ const jobSchema = new mongoose.Schema ({
     },
     hiringMultipleCandidates: {
         type: String,
-        default: "no",
+        default: "No",
         enum: ["Yes", "No"]
     },
     personalWebsite: {
-        type: String,
-        required: true
+        title: String,
+        url: String
     },
     jobNiche: {
         type: String,
         required: true
     },
-    newsLettersSend: {
+    newsLettersSent: {
         type: Boolean,
         default: false
     },
