@@ -64,7 +64,11 @@ export const getAllJobs = catchAsyncErrors(async(req, res, next) => {
 })
 
 export const getMyJobs = catchAsyncErrors(async(req, res, next) => {
-
+        const myJobs = await Job.find({postedBy: req.user._id})
+        res.status(200).json({
+            success: true,
+            myJobs
+        })
 })
 export const deleteJob = catchAsyncErrors(async(req, res, next) => {
 
