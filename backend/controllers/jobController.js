@@ -69,6 +69,7 @@ export const getMyJobs = catchAsyncErrors(async(req, res, next) => {
             success: true,
             myJobs
         })
+        console.log(myJobs);
 })
 export const deleteJob = catchAsyncErrors(async(req, res, next) => {
 
@@ -76,5 +77,6 @@ export const deleteJob = catchAsyncErrors(async(req, res, next) => {
 export const getASingleJob = catchAsyncErrors(async(req, res, next) => {
 
 })
+
 
 
