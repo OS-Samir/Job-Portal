@@ -71,9 +71,9 @@ export const postJob = catchAsyncErrors(async (req, res, next) => {
   });
   
   export const getAllJobs = catchAsyncErrors(async (req, res, next) => {
-    const { city, niche, searchKeyword } = req.query;
+    const { location, niche, searchKeyword } = req.query;
     const query = {};
-    if (city) {
+    if (location) {
       query.location = city;
     }
     if (niche) {
