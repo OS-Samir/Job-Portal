@@ -120,6 +120,15 @@ export const postJob = catchAsyncErrors(async (req, res, next) => {
   });
 
 export const getASingleJob = catchAsyncErrors(async(req, res, next) => {
+  const {id} = req.params;
+  const job = await Job.findById(id);
+  if (!job) {
+    return next(new ErrorHandler("Oops! Job not found.", 404));
+  }
+  res.status(200).json({
+    success: true,
+    job
+  })
 
 })
 
