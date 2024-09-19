@@ -1,5 +1,6 @@
 import {catchAsyncErrors} from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../middleware/error.js";
+import mongoose from "mongoose";
 
 import { Job } from "../models/jobSchema.js";
 
@@ -102,22 +103,27 @@ export const postJob = catchAsyncErrors(async (req, res, next) => {
     });
   });
 
-export const deleteJob = catchAsyncErrors(async ( req, res, next) => {
-  const {id} = req.params;
-  const job  = await Job.findById(id);
-  if (!job) {
-    return next (new ErrorHandler("Oops! Jobs not found", 404));
-
-  }
-  await job.deleteOne();
-  res.status(200).json({
-    success: true,
-    message: "Job deleted successfully",
-  })
- 
+  export const deleteJob = catchAsyncErrors(async (req, res, next) => {
+    const { id } = req.params;
   
 
-})
+      // Check if the ID is a valid MongoDB ObjectId
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return next(new ErrorHandler("Oops! Job not found.", 404));
+  }
+
+  const job = await Job.findById(id);
+  if (!job) {
+    return next(new ErrorHandler("Oops! Job not found.", 404));
+  }
+
+    await job.deleteOne();
+    res.status(200).json({
+      success: true,
+      message: "Job deleted successfully",
+    });
+  });
+
 export const getASingleJob = catchAsyncErrors(async(req, res, next) => {
 
 })
