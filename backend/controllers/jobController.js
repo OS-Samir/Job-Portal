@@ -104,15 +104,10 @@ export const postJob = catchAsyncErrors(async (req, res, next) => {
   });
 
   export const deleteJob = catchAsyncErrors(async (req, res, next) => {
-    const { id } = req.params;
+    const { _id } = req.params;
   
 
-      // Check if the ID is a valid MongoDB ObjectId
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return next(new ErrorHandler("Oops! Job not found.", 404));
-  }
-
-  const job = await Job.findById(id);
+  const job = await Job.findById(_id);
   if (!job) {
     return next(new ErrorHandler("Oops! Job not found.", 404));
   }
