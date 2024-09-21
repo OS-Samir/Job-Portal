@@ -1,6 +1,8 @@
 import {catchAsyncErrors} from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../middleware/error.js";
 import { Application } from "../models/applicationSchema.js";
+import { Job } from "../models/jobSchema.js";
+import {v2 as cloudinary} from "cloudinary";
 
 export const postApplication = catchAsyncErrors(async(req, res, next)=> {
     const {id} = req.params;
@@ -9,8 +11,56 @@ export const postApplication = catchAsyncErrors(async(req, res, next)=> {
          return next(new ErrorHandler("All fields must be filled", 400));
     }
     const jobSeekerInfo = {
-        
+        id: req.user._id,
+        name,
+        email,
+        phone,
+        address,
+        coverLetter,
+        role: "Job Seeker"
+    };
+    const jobDetails = await jobSeekerInfo.findById(id);
+    if(!jobDetails) {
+        return next(new ErrorHandler("Job not found", 400));
     }
+    if (req.files && req.files.resume) {
+        const {resume} = req.files;
+        try{
+            const cloudinaryResponse = await cloudinary.uploader.upload(resume.tempFilePath, {
+                folder: "Job_Seekers_Resume"
+            })
+            if (!cloudinaryResponse || cloudinaryResponse.error){
+                return next (new ErrorHandler("failed to upload resume to cloudinary", 500))
+            }
+            jobSeekerInfo.resume = {
+                public_id: cloudinaryResponse.public_id,
+                url: cloudinaryResponse.secure_url
+            }
+        } catch(error){
+                return next(new ErrorHandler("Failed to upload resume", 500));
+        }
+    }
+    else {
+        if (req.user && !req.user.resume.url){
+            return next(new ErrorHandler("Please upload your resume", 400));
+        }
+        jobSeekerInfo.resume = {
+            public_id: req.user && req.user.resume.public_id,
+            url:  req.user && req.user.resume.url
+        }
+    }
+    const employerInfo = {
+        id: jobDetails.postedBy,
+        role: "Employer"
+    }
+    const jobInfo = {
+        jobId: id,
+        jobTitle: jobDetails.title
+    }
+    const isAlreadyApplied = await Application.findOne({
+        "jobInfo.id": id,
+        "jobSeekerInfo": req.user._id
+    })
 });
 export const employerGetAllApplication = catchAsyncErrors(async(req, res, next)=> {});
 export const jobSeekerGetAllApplication = catchAsyncErrors(async(req, res, next)=> {});
