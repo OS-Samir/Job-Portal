@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import validator from "validator";
 
+import validator from "validator";
 
 const applicationSchema = new mongoose.Schema({
     jobSeekerInfo: {
