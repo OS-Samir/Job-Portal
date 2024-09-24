@@ -8,7 +8,7 @@ import { Application } from "../models/applicationSchema.js";
 
 
 export const postApplication = catchAsyncErrors(async (req, res, next) => {
-    const { _id } = req.params;
+    const { id } = req.params;
     const { name, email, phone, address, coverLetter } = req.body;
     if (!name || !email || !phone || !address || !coverLetter) {
       return next(new ErrorHandler("All fields are required.", 400));
@@ -22,12 +22,12 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
       coverLetter,
       role: "Job Seeker",
     };
-    const jobDetails = await Job.find(_id);
+    const jobDetails = await Job.findById(id);
     if (!jobDetails) {
       return next(new ErrorHandler("Job not found.", 404));
     }
     const isAlreadyApplied = await Application.findOne({
-      "jobInfo.jobId": _id,
+      "jobInfo.jobId": id,
       "jobSeekerInfo.id": req.user._id,
     });
     if (isAlreadyApplied) {
@@ -70,7 +70,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
       role: "Employer",
     };
     const jobInfo = {
-      jobId: _id,
+      jobId: id,
       jobTitle: jobDetails.title,
     };
     const application = await Application.create({

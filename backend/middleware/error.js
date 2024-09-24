@@ -1,39 +1,36 @@
- class ErrorHandler extends Error {
+class ErrorHandler extends Error {
     constructor(message, statusCode) {
-        super(message);
-        this.statusCode = statusCode;
+      super(message);
+      this.statusCode = statusCode;
     }
- }
-
- export const errorMiddleware = (err, req, res, next) => {
+  }
+  
+  export const errorMiddleware = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
-    err.message = err.message || "Internal Server Error";
-
+    err.message = err.message || "Internal server error.";
+  
     if (err.name === "CastError") {
-        const message = `Invalid ${err.path}`;
-        err = new ErrorHandler(message, 400)
+      const message = `Invalid ${err.path}`;
+      err = new ErrorHandler(message, 400);
     }
-    
-    if(err.code === 11000) {
-        const message = `Duplicate ${Object.keys(err.keyValue)} Entered`
-        err = new ErrorHandler(message, 400)
+    if (err.code === 11000) {
+      const message = `Duplicate ${Object.keys(err.keyValue)} Entered.`;
+      err = new ErrorHandler(message, 400);
     }
-
     if (err.name === "JsonWebTokenError") {
-        const message = `Json Web Token is invalid, try again`;
-        err = new ErrorHandler(message, 400)
-        // console.error(err)
+      const message = `Json Web Token is invalid, Try again.`;
+      err = new ErrorHandler(message, 400);
     }
-
     if (err.name === "TokenExpiredError") {
-        const message = `Session expired, login again`;
-        err = new ErrorHandler(message, 400)
+      const message = `Json Web Token is expired, Try again.`;
+      err = new ErrorHandler(message, 400);
     }
-
+  
     return res.status(err.statusCode).json({
-        success:false,
-        message: err.message,
-        
-    })
- }
- export default ErrorHandler;
+      success: false,
+      message: err.message,
+    });
+  };
+  
+  
+  export default ErrorHandler
