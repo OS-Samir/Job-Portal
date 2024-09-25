@@ -8,6 +8,7 @@ import { Job } from "../models/jobSchema.js";
 
 export const postJob = catchAsyncErrors(async (req, res, next) => {
   const {
+    
     title,
     jobType,
     location,

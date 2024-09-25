@@ -1,5 +1,6 @@
 import express from "express";
 
+
 import { isAuthenticated, isAuthorized } from "../middleware/auth.js";
 
 import { deleteApplication, employerGetAllApplication, jobSeekerGetAllApplication, postApplication } from "../controllers/applicationController.js";
