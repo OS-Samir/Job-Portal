@@ -89,6 +89,16 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
 });
 
 
-export const employerGetAllApplication = catchAsyncErrors(async(req, res, next)=> {});
+export const employerGetAllApplication = catchAsyncErrors(async(req, res, next)=> {
+    const {_id} = req.user;
+    const application = await Application.find({
+        "employerInfo.id": _id,
+        "deletedBy.employer": false,
+    });
+    res.status(200).json({
+        success: true,
+        application
+    })
+});
 export const jobSeekerGetAllApplication = catchAsyncErrors(async(req, res, next)=> {});
 export const deleteApplication = catchAsyncErrors(async(req, res, next)=> {});
