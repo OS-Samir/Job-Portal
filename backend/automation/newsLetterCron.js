@@ -16,8 +16,20 @@ cron.schedule("*/1 * * * *", async () => {
 
                 ]
             })
+            for (const user of filteredUsers) {
+                const subject = `Job Alert: ${job.title} in ${job.jobNiche} Available now`;
+                const message = ``;
+                sendEmail({
+                    email: user.email,
+                    subject,
+                    message
+                })
+            }
+            job.newsLettersSent = true;
+            await job.save();
         } catch (error) {
-
+            console.log("Error in node cron catch block");
+            return next (console.error(error.message || "Some error occured in cron"))
         }
     }
 } )
