@@ -3,7 +3,7 @@ import {Job} from "../models/jobSchema.js";
 import {User} from "../models/userSchema.js";
 import { sendEmail } from '../utils/sendEmail.js';
 
-export const newLetterCron = () => {
+export const newsLetterCron = () => {
 cron.schedule("*/1 * * * *", async () => {
     console.log('Running cron automation');
     const jobs = await Job.find({newsLettersSent: false});
