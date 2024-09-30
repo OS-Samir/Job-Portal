@@ -5,6 +5,7 @@ import { sendEmail } from '../utils/sendEmail.js';
 
 export const newLetterCron = () => {
 cron.schedule("*/1 * * * *", async () => {
+    console.log('Running cron automation');
     const jobs = await Job.find({newsLettersSent: false});
     for (const job of jobs) {
         try {

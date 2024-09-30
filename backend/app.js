@@ -38,7 +38,7 @@ app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
 
 
-// newLetterCron();
+newLetterCron();
 connection();
 
 app.use(errorMiddleware)
