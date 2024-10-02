@@ -11,9 +11,9 @@ cron.schedule("*/1 * * * *", async () => {
         try {
             const filteredUsers = await User.find({
                 $or: [
-                    {"niches: firstNiche": job.jobNiche},
-                    {"niches: secondNiche": job.jobNiche},
-                    {"niches: thirdNiche": job.jobNiche},
+                    {"niches.firstNiche": job.jobNiche},
+                    {"niches.secondNiche": job.jobNiche},
+                    {"niches.thirdNiche": job.jobNiche},
 
                 ]
             })
