@@ -46,10 +46,36 @@ const jobSlice = createSlice({
 export const fetchJobs = (city, niche, searchKeyword = "") => async(dispatch) => {
     try {
         dispatch(jobSlice.actions.requestForAllJobs());
-        let link = ""
+        let link = "http://localhost:3000/api/v1/job/getall?"
+        let queryParams = [];
+        if(searchKeyword){
+            queryParams.push(`searchKeyword = ${searchKeyword}`);
+        
+        }
+        if(city){
+        queryParams.push(`city = ${city}`);
+        }
+        if(niche) {
+            queryParams.push(`niche = ${niche}`);
+        }
+        link += queryParams.join("&");
+        const response = await axios.get(link, {withCredentials: true});
+        dispatch(jobSlice.actions.successForAllJobs(response.data.jobs));
+        dispatch(jobSlice.actions.clearAllErrors());
     } catch (error) {
-        console.log(error.message);
+        dispatch(jobSlice.actions.failureForAllJobs(error.response.data.message));
     }
 
+};
+
+export const clearAllErrors = () => (dispatch) => {
+    dispatch(jobSlice.actions.clearAllErrors());
+}   
+
+export const resetJobSlice = () => () => {
+    dispatch(jobSlice.actions.resetJobSlice());
 }
+
+
+export default jobSlice.reducer;
 
