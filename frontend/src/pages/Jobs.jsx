@@ -3,10 +3,10 @@ import {useDispatch, useSelector} from "react-redux"
 import {toast} from 'react-toastify'
 import Spinner from "../components/Spinner"
 import {FaSearch} from "react-icons/fa"
-import {clearAllJobErrors, fetchJobs} from ""
+import { clearAllJobErrors, fetchJobs } from "../../store/slices/jobSlice"
 const Jobs = () => {
   const[city, setCity] = useState("");
-  const[selectCity, setSelectedCity] = useState("");
+  const[selectedCity, setSelectedCity] = useState("");
   const[niche, setNiche] = useState("");
   const[selectedNiche, setSelectedNiche] = useState("");
   const[searchKeyWord, setSearchKeyWord] = useState("");
@@ -36,6 +36,31 @@ const Jobs = () => {
     dispatch(fetchJobs(city, niche, searchKeyWord));
   }
 
+  const cities = [
+    "Kathmandu",
+    "Pokhara",
+    "Chitwan",
+    "Itahari",
+    "Lalitpur",
+    "Janakpur",
+    "Sindhuli",
+    "Dharan",
+    "Birgunj",
+    "Dhangadhi",
+    "Nepalgunj",
+    "Bhaktapur",
+    "Ghorahi",
+    "Baglung",
+    "Tansen",
+    "Ilam",
+    "Birendranagar",
+    "Banepa",
+    "Tikapur",
+    "Inaruwa",
+    "Bhadrapur",
+    "Gaighat",
+    "Gorkha"
+  ]
 
   return (
     <>
@@ -48,7 +73,19 @@ const Jobs = () => {
               <FaSearch />
             </div>
             <div className="wrapper">
+                <div className="filter-bar">
+                  <div className="cities">
+                    <h2>Filter job by city</h2>
+                    {
+                      cities.map((city, index)=> {
+                        <div key={index}>
+                          <input type="radio" id={city} name="city" value={city} checked={selectedCity == city} onChange={() => handleCityChange(city)} />
 
+                        </div>
+                      })
+                    }
+                  </div>
+                </div>
             </div>
         </section>
       )

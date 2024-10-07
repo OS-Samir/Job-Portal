@@ -68,7 +68,7 @@ export const fetchJobs = (city, niche, searchKeyword = "") => async(dispatch) =>
 
 };
 
-export const clearAllErrors = () => (dispatch) => {
+export const clearAllJobErrors = () => (dispatch) => {
     dispatch(jobSlice.actions.clearAllErrors());
 }   
 
