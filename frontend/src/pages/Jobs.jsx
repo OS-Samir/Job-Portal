@@ -11,7 +11,6 @@ const Jobs = () => {
   const[niche, setNiche] = useState("");
   const[selectedNiche, setSelectedNiche] = useState("");
   const[searchKeyword, setSearchKeyword] = useState("");
-  
   const {jobs, loading, error} = useSelector(state => state.jobs);
 
   const handleCityChange = (city) => {
@@ -131,7 +130,9 @@ const Jobs = () => {
     <>
       {loading ? (
         <Spinner />
-      ) : (
+      ) 
+      : 
+      (
         <section className="jobs">
           <div className="search-tab-wrapper">
             <input
@@ -200,8 +201,7 @@ const Jobs = () => {
                 </select>
               </div>
               <div className="jobs_container">
-                {jobs &&
-                  jobs.map((element) => {
+                {jobs && jobs.map((element) => {
                     return (
                       <div className="card" key={element._id}>
                         {element.hiringMultipleCandidates === "Yes" ? (
@@ -215,7 +215,7 @@ const Jobs = () => {
                         <p className="company">{element.companyName}</p>
                         <p className="location">{element.location}</p>
                         <p className="salary">
-                          <span>Salary:</span> Rs. {element.salary}
+                          <span>Salary:</span> Rs.{element.salary}
                         </p>
                         <p className="posted">
                           <span>Posted On:</span>{" "}
