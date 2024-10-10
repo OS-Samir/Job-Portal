@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-
+import { useDispatch, useSelector } from 'react-redux';
+import {useNavigate} from "react-router-dom"
 const Register = () => {
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
   const [firstNiche, setfirstNiche] = useState("");
   const [secondNiche, setsecondNiche] = useState("");
   const [thirdNiche, setthirdNiche] = useState("");
@@ -76,8 +78,47 @@ const Register = () => {
     "VR Developer",
     "XR (Extended Reality) Engineer"
   ];
+  const resumeHandler = (e) => {
+    const file = e.target.files[0];
+    setResume(file);
+  };
 
-  
+  const { loading, isAuthenticated, error, message } = useSelector(
+    (state) => state.user
+  );
+
+  const dispatch = useDispatch();
+  const navigateTo = useNavigate();
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("role", role);
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("address", address);
+    formData.append("password", password);
+    if (role === "Job Seeker") {
+      formData.append("firstNiche", firstNiche);
+      formData.append("secondNiche", secondNiche);
+      formData.append("thirdNiche", thirdNiche);
+      formData.append("coverLetter", coverLetter);
+      formData.append("resume", resume);
+    }
+    dispatch(register(formData));
+  };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch(clearAllUserErrors());
+    }
+    if (isAuthenticated) {
+      navigateTo("/");
+    }
+  }, [dispatch, error, loading, isAuthenticated, message]);
+
 
   return (
   <>
@@ -85,4 +126,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Register;
