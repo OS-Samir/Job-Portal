@@ -122,6 +122,29 @@ const Register = () => {
 
   return (
   <>
+  <section className='authpage'>
+    <div className='container'>
+        <div className="header">
+          <h3>Create a new account</h3>
+        </div>
+        <form onSubmit={handleRegister}>
+          <div className="wrapper">
+            <div className="inputTag">
+                  <label> Register as</label>
+                  <div>
+                    <select value={role} onChange={(e) => setRole(e.target.value)}>
+                      <option value="">Select Role</option>
+                      <option value="">Register as an employer</option>
+                      <option value="">Register as a job seeker</option>
+
+                    </select>
+                  </div>
+            </div>
+          </div>
+        </form>
+    </div>
+
+  </section>
   </>
   )
 }
