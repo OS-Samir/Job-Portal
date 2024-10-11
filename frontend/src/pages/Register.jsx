@@ -1,6 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import {clearAllUserErrors, register} from ".."
+import { toast } from 'react-toastify';
 import {useNavigate} from "react-router-dom"
+import { clearAllUserErrors, register } from '../../store/slices/userSlice';
+import {FaRegUser} from "react-icons/fa"
 const Register = () => {
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
@@ -134,10 +139,11 @@ const Register = () => {
                   <div>
                     <select value={role} onChange={(e) => setRole(e.target.value)}>
                       <option value="">Select Role</option>
-                      <option value="">Register as an employer</option>
-                      <option value="">Register as a job seeker</option>
+                      <option value="Employer">Register as an employer</option>
+                      <option value="Job Seeker">Register as a job seeker</option>
 
                     </select>
+                    <FaRegUser />
                   </div>
             </div>
           </div>

@@ -33,7 +33,7 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.message = null;
         },
-        clearAllError(state, action) {
+        clearAllErrors(state, action) {
             state.error = null;
             state.user = state.user;
         },
@@ -52,7 +52,7 @@ export const register = (data) => async (dispatch) => {
             
         } );
         dispatch(userSlice.actions.registerSuccess(response.data));
-        dispatch(userSlice.actions.clearAllError());
+        dispatch(userSlice.actions.clearAllErrors());
     } catch (error) {
         dispatch(userSlice.actions.registerError(error.response.data.message));
     }
