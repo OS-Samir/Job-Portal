@@ -5,7 +5,7 @@ import {clearAllUserErrors, register} from ".."
 import { toast } from 'react-toastify';
 import {useNavigate} from "react-router-dom"
 import { clearAllUserErrors, register } from '../../store/slices/userSlice';
-import {FaRegUser} from "react-icons/fa"
+import {FaPencilAlt, FaRegUser} from "react-icons/fa"
 const Register = () => {
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
@@ -144,6 +144,13 @@ const Register = () => {
 
                     </select>
                     <FaRegUser />
+                  </div>
+            </div>
+            <div className="inputTag">
+                  <label> Name </label>
+                  <div>
+                    <input type="text" placeholder='Your name' value={name} onChange={(e) => setName(e.target.value)} />
+                    <FaPencilAlt />
                   </div>
             </div>
           </div>
