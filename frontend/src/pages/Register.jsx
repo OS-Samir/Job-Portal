@@ -113,7 +113,7 @@ const Register = () => {
     }
     dispatch(register(formData));
   };
-
+  // console.log(formData);
   useEffect(() => {
     if (error) {
       toast.error(error);
