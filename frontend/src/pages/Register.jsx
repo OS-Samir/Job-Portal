@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {clearAllUserErrors, register} from ".."
 import { toast } from 'react-toastify';
-import {useNavigate} from "react-router-dom"
 import { clearAllUserErrors, register } from '../../store/slices/userSlice';
 import {FaPencilAlt, FaRegUser} from "react-icons/fa"
 const Register = () => {
@@ -127,7 +125,7 @@ const Register = () => {
 
   return (
   <>
-  <section className='authpage'>
+  <section className='authPage'>
     <div className='container'>
         <div className="header">
           <h3>Create a new account</h3>
