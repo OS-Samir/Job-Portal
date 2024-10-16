@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { clearAllUserErrors, register } from '../../store/slices/userSlice';
-import {FaPencilAlt, FaRegUser} from "react-icons/fa"
+import {FaAddressBook, FaPencilAlt, FaRegUser} from "react-icons/fa"
 import {FaPhoneFlip} from "react-icons/fa6"
 import {MdOutlineMailOutline} from "react-icons/md"
+import {RiLock2Fill} from "react-icons/ri"
 const Register = () => {
   const [role, setRole] = useState("");
   const [name, setName] = useState("");
@@ -167,6 +168,22 @@ const Register = () => {
                   <div>
                     <input type="number" placeholder='Your phone number' value={phone} onChange={(e) => setPhone(e.target.value)} />
                     <FaPhoneFlip />
+                  </div>
+            </div>
+          </div>
+          <div className="wrapper">
+            <div className="inputTag">
+                  <label> Address</label>
+                  <div>
+                  <input type="text" placeholder='Your Address' value={address} onChange={(e) => setAddress(e.target.value)} />
+                    <FaAddressBook />
+                  </div>
+            </div>
+            <div className="inputTag">
+                  <label> Password </label>
+                  <div>
+                    <input type="password" placeholder='Your password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <RiLock2Fill />
                   </div>
             </div>
           </div>
