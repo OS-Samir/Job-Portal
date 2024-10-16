@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { clearAllUserErrors, register } from '../../store/slices/userSlice';
 import {FaPencilAlt, FaRegUser} from "react-icons/fa"
+import {FaPhoneFlip} from "react-icons/fa6"
 import {MdOutlineMailOutline} from "react-icons/md"
 const Register = () => {
   const [role, setRole] = useState("");
@@ -162,10 +163,10 @@ const Register = () => {
                   </div>
             </div>
             <div className="inputTag">
-                  <label> Name </label>
+                  <label> Phone Number </label>
                   <div>
-                    <input type="text" placeholder='Your name' value={name} onChange={(e) => setName(e.target.value)} />
-                    <FaPencilAlt />
+                    <input type="number" placeholder='Your phone number' value={phone} onChange={(e) => setPhone(e.target.value)} />
+                    <FaPhoneFlip />
                   </div>
             </div>
           </div>
