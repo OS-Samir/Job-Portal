@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { clearAllUserErrors, register } from '../../store/slices/userSlice';
 import {FaAddressBook, FaPencilAlt, FaRegUser} from "react-icons/fa"
 import {FaPhoneFlip} from "react-icons/fa6"
-import {MdOutlineMailOutline} from "react-icons/md"
+import {MdCategory, MdOutlineMailOutline} from "react-icons/md"
 import {RiLock2Fill} from "react-icons/ri"
 const Register = () => {
   const [role, setRole] = useState("");
@@ -14,10 +14,10 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
-  const [firstNiche, setfirstNiche] = useState("");
-  const [secondNiche, setsecondNiche] = useState("");
-  const [thirdNiche, setthirdNiche] = useState("");
-  const [coverLetter, setcoverLetter] = useState("");
+  const [firstNiche, setFirstNiche] = useState("");
+  const [secondNiche, setSecondNiche] = useState("");
+  const [thirdNiche, setThirdNiche] = useState("");
+  const [coverLetter, setCoverLetter] = useState("");
   const [resume, setResume] = useState("");
 
 
@@ -187,6 +187,83 @@ const Register = () => {
                   </div>
             </div>
           </div>
+           {
+            role === "Job Seeker" && (
+              <>
+              <div className='wrapper'>
+              <div className='inputTag'>
+                <label>Your First Niche</label>
+                <div>
+                  <select value={firstNiche} onChange={(e) => setFirstNiche(e.target.value)}>
+                    <option value="">Your First Niche</option>
+                    {
+                      
+                      niches.map((niche, index) => {
+                        return(
+                          <option key={index} value={niche}>{niche}</option>
+                        )
+
+                      })
+                    }
+                  </select>
+                  <MdCategory />
+                </div>
+              </div>
+              <div className='inputTag'>
+                <label>Your Second Niche</label>
+                <div>
+                  <select value={secondNiche} onChange={(e) => setSecondNiche(e.target.value)}>
+                    <option value="">Your Second Niche</option>
+                    {
+                      niches.map((niche, index) => {
+                        return (
+                          <option key={index} value={niche}>{niche}</option>
+                        )
+
+                      })
+                    }
+                  </select>
+                  <MdCategory />
+                </div>
+              </div>
+              <div className='inputTag'>
+                <label>Your Third Niche</label>
+                <div>
+                  <select value={thirdNiche} onChange={(e) => setThirdNiche(e.target.value)}>
+                    <option value="">Your Third Niche</option>
+                    {
+                      niches.map((niche, index) => {
+                        return (
+                          <option key={index} value={niche}>{niche}</option>
+                        )
+                      })
+                    }
+                  </select>
+                  <MdCategory />
+                </div>
+              </div>
+              </div>
+              <div className="wrapper">
+                <div className="inputTag">
+                  <label>Coverletter</label>
+                  <div>
+                    <textarea rows={10}  value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)}  ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div className="wrapper">
+                <div className="inputTag">
+                  <label>Resume</label>
+                  <div>
+                    <input type="file"onChange={resumeHandler} style={{border: "none"}} />
+                  </div>
+                </div>
+              </div>
+              </>
+            )
+           }
+           <button type='submit' disabled={loading}>Register</button>
+           <Link to={"/login"}>Login Now</Link>
         </form>
     </div>
 

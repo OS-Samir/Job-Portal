@@ -11,7 +11,8 @@ import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Register from './pages/Register'
 import PostApplication from './pages/PostApplication'
-
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
 
 
@@ -29,6 +30,7 @@ function App() {
     <Route path='*' element={<NotFound />}/>
   </Routes>
   <Footer />
+  <ToastContainer position="bottom-right" theme="dark"/>
 </Router>
     </>
   )
