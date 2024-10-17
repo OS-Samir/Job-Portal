@@ -30,7 +30,7 @@ function App() {
     <Route path='*' element={<NotFound />}/>
   </Routes>
   <Footer />
-  <ToastContainer position="bottom-right" theme="dark"/>
+  <ToastContainer position="top-right" theme="dark"/>
 </Router>
     </>
   )
