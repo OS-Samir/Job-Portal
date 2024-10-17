@@ -54,7 +54,7 @@ export const register = (data) => async (dispatch) => {
         dispatch(userSlice.actions.registerSuccess(response.data));
         dispatch(userSlice.actions.clearAllErrors());
     } catch (error) {
-        dispatch(userSlice.actions.registerError(error.response.data.message));
+        dispatch(userSlice.actions.registerFailed(error.response.data.message));
     }
 };
 
