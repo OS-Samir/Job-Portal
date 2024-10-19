@@ -13,8 +13,15 @@ import Register from './pages/Register'
 import PostApplication from './pages/PostApplication'
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { getUser } from "../store/slices/userSlice"
 function App() {
+  const dispatch = useDispatch();
 
+  useEffect(()=> {
+    dispatch(getUser());
+  }, [])
 
   return (
     <>
