@@ -41,7 +41,7 @@ const Navbar = () => {
           }
         </ul>
       </div>
-      <GiHamburgerMenu className='hamburger' onClick={()=> setShow(!show)}/>
+      <GiHamburgerMenu className="hamburger" onClick={()=> setShow(!show)}/>
     </nav>
     </>
   )
