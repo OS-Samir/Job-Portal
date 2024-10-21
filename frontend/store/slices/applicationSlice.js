@@ -70,5 +70,18 @@ const applicationSlice = createSlice({
 })
 
 export const postApplication = (data, jobId) => async(dispatch) => {
-
+        dispatch(applicationSlice.actions.requestForAllApplications());
+        try {
+            const response = await axios.post(`http://localhost:4000/api/v1/application/post/${jobId}`, data,
+                {
+                    withCredentials: true,
+                    headers: {"Content-Type": "multipart/form-data"},
+                }
+            );
+            dispatch(applicationSlice.actions.successForPostApplication(response.data.message));
+            dispatch(applicationSlice.actions.clearAllErrors());
+        }
+        catch (error) {
+            dispatch (applicationSlice.actions.failureForPostApplication(error.response.data.message));
+        }
 }
