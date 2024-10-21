@@ -69,6 +69,23 @@ const applicationSlice = createSlice({
     }
 });
 
+export const fetchEmployerApplications = () => async(dispatch) => {
+    dispatch(applicationSlice.actions.requestForAllApplications());
+        try {
+            const response = await axios.get(`http://localhost:4000/api/v1/application/employer/getall`,
+                {
+                    withCredentials: true,
+
+                }
+            );
+            dispatch(applicationSlice.actions.successForAllApplications(response.data.applications));
+            dispatch(applicationSlice.actions.clearAllErrors());
+        }
+        catch (error) {
+            dispatch (applicationSlice.actions.failureForAllApplications(error.response.data.message));
+        }
+}
+
 export const fetchJobSeekerApplications = () => async(dispatch) => {
     dispatch(applicationSlice.actions.requestForMyApplications());
         try {
@@ -85,6 +102,8 @@ export const fetchJobSeekerApplications = () => async(dispatch) => {
             dispatch (applicationSlice.actions.failureForMyApplications(error.response.data.message));
         }
 }
+
+
 
 export const postApplication = (data, jobId) => async(dispatch) => {
         dispatch(applicationSlice.actions.requestForAllApplications());
