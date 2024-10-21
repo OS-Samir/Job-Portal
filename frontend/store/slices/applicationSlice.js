@@ -8,7 +8,7 @@ const applicationSlice = createSlice({
         loading: false,
         error: null,
         message: null,
-        myApplications: []
+        // myApplications: []
     },
     reducers: {
         requestForAllApplications(state, action) {
@@ -55,12 +55,12 @@ const applicationSlice = createSlice({
         clearAllErrors(state, action) {
             state.error = null;
             state.applications = state.applications;
-            state.myApplications = state.myApplications;
+            // state.myApplications = state.myApplications;
         },
         resetApplicationSlice(state, action) {
             state.error = null;
             state.applications = state.applications;
-            state.myApplications = state.myApplications;
+            // state.myApplications = state.myApplications;
             state.message = null;
             state.loading = false;
 
@@ -121,3 +121,14 @@ export const postApplication = (data, jobId) => async(dispatch) => {
             dispatch (applicationSlice.actions.failureForPostApplication(error.response.data.message));
         }
 }
+
+export const clearAllApplicationErrors = () => (dispatch) => {
+    dispatch(applicationSlice.actions.clearAllErrors());
+}   
+
+export const resetApplicationSlice = () => () => {
+    dispatch(applicationSlice.actions.resetApplicationSlice());
+}
+
+
+export default applicationSlice.reducer;
