@@ -40,6 +40,23 @@ const jobSlice = createSlice({
             state.myJobs = state.myJobs;
             state.singleJob = {};
         },
+        requestForSingleJob(state, action) {
+            state.error = null;
+            state.message = null;
+            state.loading = true;
+
+        },
+        successForSingleJob(state, action) {
+            state.error = null;
+            state.loading = false;
+            state.singleJob = action.payload
+        },
+        
+        failureForSingleJob(state, action) {
+            state.singleJob = state.singleJob;
+            state.error = action.payload;
+            state.loading = false;
+        }
 
     },
 });
@@ -67,6 +84,17 @@ export const fetchJobs = (city, niche, searchKeyword = "") => async(dispatch) =>
     }
 
 };
+
+export const fetchSingleJob = (jobId) => async(dispatch) => {
+    dispatch(jobSlice.actions.requestForSingleJob());
+    try {
+        const response = await axios.get(`http://localhost:3000/api/v1/job/get/${jobId}`, {withCredentials: true});
+        dispatch(jobSlice.actions.successForAllJobs(response.data.job));
+        dispatch(jobSlice.actions.clearAllErrors());
+    } catch (error) {
+        dispatch(jobSlice.actions.failureForSingleJob(error.response.data.message));
+    }
+}
 
 export const clearAllJobErrors = () => (dispatch) => {
     dispatch(jobSlice.actions.clearAllErrors());

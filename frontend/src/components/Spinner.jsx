@@ -5,7 +5,7 @@ const Spinner = () => {
   return (
     <>
      <section style={{minHeight: "530px", display: "flex", justifyContent: "center", alignItems:"center"}}>
-      <ClipLoader size={150} ariaLabel='Loading Spinner' />
+      <ClipLoader size={150} aria-label='Loading Spinner' />
       </section> 
     </>
   )
