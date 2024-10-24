@@ -93,7 +93,7 @@ export const fetchSingleJob = (jobId) => async(dispatch) => {
         dispatch(jobSlice.actions.clearAllErrors());
     } catch (error) {
         dispatch(jobSlice.actions.failureForSingleJob(error.response.data.message));
-    }
+    } 
 }
 
 export const clearAllJobErrors = () => (dispatch) => {
