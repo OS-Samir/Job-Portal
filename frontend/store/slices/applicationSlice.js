@@ -72,7 +72,7 @@ const applicationSlice = createSlice({
 export const fetchEmployerApplications = () => async(dispatch) => {
     dispatch(applicationSlice.actions.requestForAllApplications());
         try {
-            const response = await axios.get(`http://localhost:4000/api/v1/application/employer/getall`,
+            const response = await axios.get(`http://localhost:3000/api/v1/application/employer/getall`,
                 {
                     withCredentials: true,
 
@@ -89,7 +89,7 @@ export const fetchEmployerApplications = () => async(dispatch) => {
 export const fetchJobSeekerApplications = () => async(dispatch) => {
     dispatch(applicationSlice.actions.requestForMyApplications());
         try {
-            const response = await axios.get(`http://localhost:4000/api/v1/application/jobseeker/getall`,
+            const response = await axios.get(`http://localhost:3000/api/v1/application/jobseeker/getall`,
                 {
                     withCredentials: true,
 
@@ -108,7 +108,7 @@ export const fetchJobSeekerApplications = () => async(dispatch) => {
 export const postApplication = (data, jobId) => async(dispatch) => {
         dispatch(applicationSlice.actions.requestForAllApplications());
         try {
-            const response = await axios.post(`http://localhost:4000/api/v1/application/post/${jobId}`, data,
+            const response = await axios.post(`http://localhost:3000/api/v1/application/post/${jobId}`, data,
                 {
                     withCredentials: true,
                     headers: {"Content-Type": "multipart/form-data"},
