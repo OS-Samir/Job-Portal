@@ -27,7 +27,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
           new ErrorHandler("Please provide your preferred job niches.", 400)
         );
       }
-      const existingUser = await User.findOne({ email });
+      const existingUser = await User.findOne({email});
       if (existingUser) {
         return next(new ErrorHandler("Email is already registered.", 400));
       }
@@ -60,7 +60,7 @@ export const register = catchAsyncErrors(async (req, res, next) => {
             }
             userData.resume = {
               public_id: cloudinaryResponse.public_id,
-              url: cloudinaryResponse.secure_url,
+              url: cloudinaryResponse.secure_url
             };
           } catch (error) {
             return next(new ErrorHandler("Failed to upload resume", 500));

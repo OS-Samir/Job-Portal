@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import {useNavigate} from "react-router-dom";
+
 import { clearAllUserErrors, login } from '../../store/slices/userSlice';
 import {toast} from "react-toastify"
-import { FaAddressBook, FaRegUser } from 'react-icons/fa';
+import { FaRegUser } from 'react-icons/fa';
 import { MdOutlineMailOutline } from 'react-icons/md';
 import { RiLock2Fill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
-  const [role, setRole] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [role, setRole] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const {loading, isAuthenticated, error} = useSelector(state => state.user)
+  const {loading, isAuthenticated, error} = useSelector((state) => state.user)
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
@@ -32,7 +32,7 @@ const Login = () => {
     if(isAuthenticated) {
       navigateTo("/");
     }
-  }, [dispatch, error, loading])
+  }, [dispatch, error, loading, isAuthenticated])
   return (
   <>
   <section className='authPage'>

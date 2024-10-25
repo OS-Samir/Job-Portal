@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
+
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch} from 'react-redux'
 import {useNavigate, useParams} from "react-router-dom"
 import { postApplication, clearAllApplicationErrors, resetApplicationSlice } from '../../store/slices/applicationSlice';
 import { fetchSingleJob } from '../../store/slices/jobSlice';
@@ -12,12 +12,12 @@ const PostApplication = () => {
   
   const {jobId} = useParams();
 
-  const [name, setName] = useState(user && user.name);
-  const [email, setEmail] = useState(user && user.email);
-  const [phone, setPhone] = useState(user && user.phone);
-  const [address, setAddress] = useState(user && user.address);
-  const [coverLetter, setCoverLetter] = useState(user && user.coverLetter);
-  const [resume, setResume] = useState(user && user.resume && user.resume.url);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [coverLetter, setCoverLetter] = useState("");
+  const [resume, setResume] = useState("");
 
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
@@ -45,11 +45,11 @@ if (message) {
   toast.success(message);
   dispatch(resetApplicationSlice());
 }
-if((user && user.role === "Employer") || !isAutheticated) {
-  navigateTo("/");
-}
+// if((user && user.role === "Employer") || !isAutheticated) {
+//   navigateTo("/");
+// }
 dispatch(fetchSingleJob(jobId));
-  }, [dispatch, error, message, jobId]);
+  }, [dispatch, error, message, jobId, user]);
 
   let qualifications = [];
   let responsibilites = [];
@@ -79,7 +79,7 @@ dispatch(fetchSingleJob(jobId));
 
       <div>
         <label>Job Title</label>
-        <input type="text" placeholder={singleJob.title} disabled/>
+        <input type="text" placeholder={singleJob.title} disabled />
       </div>
 
       <div>

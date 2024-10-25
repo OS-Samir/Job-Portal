@@ -1,7 +1,5 @@
 import {catchAsyncErrors} from "../middleware/catchAsyncErrors.js";
 import ErrorHandler from "../middleware/error.js";
-import mongoose from "mongoose";
-
 import { Job } from "../models/jobSchema.js";
 
 

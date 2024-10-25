@@ -24,7 +24,6 @@ const jobSlice = createSlice({
         },
         failureForAllJobs(state, action) {
             state.loading = false;
-            state.myJobs = state.myJobs;
             state.error = action.payload;
         },
         clearAllErrors (state, action) {
@@ -49,7 +48,7 @@ const jobSlice = createSlice({
         successForSingleJob(state, action) {
             state.error = null;
             state.loading = false;
-            state.singleJob = action.payload
+            state.singleJob = action.payload;
         },
         
         failureForSingleJob(state, action) {

@@ -127,149 +127,191 @@ const Register = () => {
 
 
   return (
-  <>
-  <section className='authPage'>
-    <div className='container'>
-        <div className="header">
-          <h3>Create a new account</h3>
-        </div>
-        <form onSubmit={handleRegister}>
-          <div className="wrapper">
-            <div className="inputTag">
-                  <label> Register as</label>
-                  <div>
-                    <select value={role} onChange={(e) => setRole(e.target.value)}>
-                      <option value="">Select Role</option>
-                      <option value="Employer">Register as an employer</option>
-                      <option value="Job Seeker">Register as a job seeker</option>
-
-                    </select>
-                    <FaRegUser />
-                  </div>
-            </div>
-            <div className="inputTag">
-                  <label> Name </label>
-                  <div>
-                    <input type="text" placeholder='Your name' value={name} onChange={(e) => setName(e.target.value)} />
-                    <FaPencilAlt />
-                  </div>
-            </div>
+    <>
+      <section className="authPage">
+        <div className="container">
+          <div className="header">
+            <h3>Create a new account</h3>
           </div>
-          <div className="wrapper">
-            <div className="inputTag">
-                  <label> Email Address</label>
-                  <div>
-                  <input type="email" placeholder='Your Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <MdOutlineMailOutline />
-                  </div>
+          <form onSubmit={handleRegsiter}>
+            <div className="wrapper">
+              <div className="inputTag">
+                <label>Register As</label>
+                <div>
+                  <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                  >
+                    <option value="">Select Role</option>
+                    <option value="Employer">Register as an Employer</option>
+                    <option value="Job Seeker">Register as a Job Seeker</option>
+                  </select>
+                  <FaRegUser />
+                </div>
+              </div>
+              <div className="inputTag">
+                <label>Name</label>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <FaPencilAlt />
+                </div>
+              </div>
             </div>
-            <div className="inputTag">
-                  <label> Phone Number </label>
-                  <div>
-                    <input type="number" placeholder='Your phone number' value={phone} onChange={(e) => setPhone(e.target.value)} />
-                    <FaPhoneFlip />
-                  </div>
+            <div className="wrapper">
+              <div className="inputTag">
+                <label>Email Address</label>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="youremail@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <MdOutlineMailOutline />
+                </div>
+              </div>
+              <div className="inputTag">
+                <label>Phone Number</label>
+                <div>
+                  <input
+                    type="number"
+                    placeholder="111-222-333"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                  <FaPhoneFlip />
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="wrapper">
-            <div className="inputTag">
-                  <label> Address</label>
-                  <div>
-                  <input type="text" placeholder='Your Address' value={address} onChange={(e) => setAddress(e.target.value)} />
-                    <FaAddressBook />
-                  </div>
+            <div className="wrapper">
+              <div className="inputTag">
+                <label>Address</label>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your Address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                  <FaAddressBook />
+                </div>
+              </div>
+              <div className="inputTag">
+                <label>Password</label>
+                <div>
+                  <input
+                    type="password"
+                    placeholder="Your Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <RiLock2Fill />
+                </div>
+              </div>
             </div>
-            <div className="inputTag">
-                  <label> Password </label>
-                  <div>
-                    <input type="password" placeholder='Your password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <RiLock2Fill />
-                  </div>
-            </div>
-          </div>
-           {
-            role === "Job Seeker" && (
+            {role === "Job Seeker" && (
               <>
-              <div className='wrapper'>
-              <div className='inputTag'>
-                <label>Your First Niche</label>
-                <div>
-                  <select value={firstNiche} onChange={(e) => setFirstNiche(e.target.value)}>
-                    <option value="">Your First Niche</option>
-                    {
-                      
-                      niches.map((niche, index) => {
-                        return(
-                          <option key={index} value={niche}>{niche}</option>
-                        )
-
-                      })
-                    }
-                  </select>
-                  <MdCategory />
-                </div>
-              </div>
-              <div className='inputTag'>
-                <label>Your Second Niche</label>
-                <div>
-                  <select value={secondNiche} onChange={(e) => setSecondNiche(e.target.value)}>
-                    <option value="">Your Second Niche</option>
-                    {
-                      niches.map((niche, index) => {
-                        return (
-                          <option key={index} value={niche}>{niche}</option>
-                        )
-
-                      })
-                    }
-                  </select>
-                  <MdCategory />
-                </div>
-              </div>
-              <div className='inputTag'>
-                <label>Your Third Niche</label>
-                <div>
-                  <select value={thirdNiche} onChange={(e) => setThirdNiche(e.target.value)}>
-                    <option value="">Your Third Niche</option>
-                    {
-                      niches.map((niche, index) => {
-                        return (
-                          <option key={index} value={niche}>{niche}</option>
-                        )
-                      })
-                    }
-                  </select>
-                  <MdCategory />
-                </div>
-              </div>
-              </div>
-              <div className="wrapper">
-                <div className="inputTag">
-                  <label>Coverletter</label>
-                  <div>
-                    <textarea rows={10}  value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)}  ></textarea>
+                <div className="wrapper">
+                  <div className="inputTag">
+                    <label>Your First Niche</label>
+                    <div>
+                      <select
+                        value={firstNiche}
+                        onChange={(e) => setFirstNiche(e.target.value)}
+                      >
+                        <option value="">Your Niche</option>
+                        {nichesArray.map((niche, index) => {
+                          return (
+                            <option key={index} value={niche}>
+                              {niche}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      <MdCategory />
+                    </div>
+                  </div>
+                  <div className="inputTag">
+                    <label>Your Second Niche</label>
+                    <div>
+                      <select
+                        value={secondNiche}
+                        onChange={(e) => setSecondNiche(e.target.value)}
+                      >
+                        <option value="">Your Niche</option>
+                        {nichesArray.map((niche, index) => {
+                          return (
+                            <option key={index} value={niche}>
+                              {niche}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      <MdCategory />
+                    </div>
+                  </div>
+                  <div className="inputTag">
+                    <label>Your Third Niche</label>
+                    <div>
+                      <select
+                        value={thirdNiche}
+                        onChange={(e) => setThirdNiche(e.target.value)}
+                      >
+                        <option value="">Your Niche</option>
+                        {nichesArray.map((niche, index) => {
+                          return (
+                            <option key={index} value={niche}>
+                              {niche}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      <MdCategory />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="wrapper">
-                <div className="inputTag">
-                  <label>Resume</label>
-                  <div>
-                    <input type="file"onChange={resumeHandler} style={{border: "none"}} />
+                <div className="wrapper">
+                  <div className="inputTag">
+                    <label>Coverletter</label>
+                    <div>
+                      <textarea
+                        value={coverLetter}
+                        onChange={(e) => setCoverLetter(e.target.value)}
+                        rows={10}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div className="wrapper">
+                  <div className="inputTag">
+                    <label>Resume</label>
+                    <div>
+                      <input
+                        type="file"
+                        onChange={resumeHandler}
+                        style={{ border: "none" }}
+                      />
+                    </div>
+                  </div>
+                </div>
               </>
-            )
-           }
-           <button type='submit' disabled={loading}>Register</button>
-           <Link to={"/login"}>Login Now</Link>
-        </form>
-    </div>
+            )}
+            <button type="submit" disabled={loading}>
+              Register
+            </button>
+            <Link to={"/login"}>Login Now</Link>
+          </form>
+        </div>
+      </section>
+    </>
+  );
+};
 
-  </section>
-  </>
-  )
-}
+
 
 export default Register;

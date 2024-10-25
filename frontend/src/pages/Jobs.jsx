@@ -11,7 +11,8 @@ const Jobs = () => {
   const[niche, setNiche] = useState("");
   const[selectedNiche, setSelectedNiche] = useState("");
   const[searchKeyword, setSearchKeyword] = useState("");
-  const {jobs, loading, error} = useSelector(state => state.jobs);
+
+  const {jobs, loading, error} = useSelector((state) => state.jobs);
 
   const handleCityChange = (city) => {
     setCity(city);
@@ -30,6 +31,7 @@ const Jobs = () => {
       dispatch(clearAllJobErrors())
     }
     dispatch (fetchJobs(city, niche, searchKeyword));
+    console.log(jobs);
   }, [dispatch, error, city, niche]);
 
   const handleSearch = () => {
@@ -107,32 +109,14 @@ const Jobs = () => {
     "Product Manager",
     "AI Engineer",
     "Robotics Engineer",
-    "Automation Engineer",
-    "NLP Specialist",
-    "Blockchain Developer",
-    "Blockchain Architect",
-    "Cryptography Engineer",
-    "QA Engineer",
-    "Software Tester",
-    "Test Automation Engineer",
-    "Technical Sales Engineer",
-    "IT Marketing Specialist",
-    "IT Business Analyst",
-    "Game Developer",
-    "Game Designer",
-    "Game Programmer",
-    "AR Developer",
-    "VR Developer",
-    "XR (Extended Reality) Engineer"
+
   ]
 
   return (
     <>
       {loading ? (
         <Spinner />
-      ) 
-      : 
-      (
+      ) : (
         <section className="jobs">
           <div className="search-tab-wrapper">
             <input
@@ -201,7 +185,8 @@ const Jobs = () => {
                 </select>
               </div>
               <div className="jobs_container">
-                {jobs && jobs.map((element) => {
+                {jobs &&
+                  jobs.map((element) => {
                     return (
                       <div className="card" key={element._id}>
                         {element.hiringMultipleCandidates === "Yes" ? (
@@ -215,7 +200,7 @@ const Jobs = () => {
                         <p className="company">{element.companyName}</p>
                         <p className="location">{element.location}</p>
                         <p className="salary">
-                          <span>Salary:</span> Rs.{element.salary}
+                          <span>Salary:</span> Rs. {element.salary}
                         </p>
                         <p className="posted">
                           <span>Posted On:</span>{" "}

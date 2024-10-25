@@ -8,8 +8,8 @@ router.post("/register", register);
 router.post("/login", login);
 router.get("/logout", isAuthenticated, logout);
 router.get("/getuser", isAuthenticated, getUser);
-router.put("/update/profile", isAuthenticated, updateProfile)
-router.put("/update/password", isAuthenticated, updatedPassword)
+router.put("/update/profile", isAuthenticated, updateProfile);
+router.put("/update/password", isAuthenticated, updatedPassword);
 
 
 export default router;

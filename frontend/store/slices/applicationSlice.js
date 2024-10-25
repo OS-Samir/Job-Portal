@@ -1,6 +1,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+
 const applicationSlice = createSlice({
     name: "applications",
     initialState: {
@@ -10,6 +11,7 @@ const applicationSlice = createSlice({
         message: null,
         // myApplications: []
     },
+
     reducers: {
         requestForAllApplications(state, action) {
             state.loading = true;
@@ -37,6 +39,7 @@ const applicationSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
         },
+        
         requestForPostApplication(state, action) {
                 state.loading = true;
                 state.error = null;
@@ -106,7 +109,7 @@ export const fetchJobSeekerApplications = () => async(dispatch) => {
 
 
 export const postApplication = (data, jobId) => async(dispatch) => {
-        dispatch(applicationSlice.actions.requestForAllApplications());
+        dispatch(applicationSlice.actions.requestForPostApplication());
         try {
             const response = await axios.post(`http://localhost:3000/api/v1/application/post/${jobId}`, data,
                 {
