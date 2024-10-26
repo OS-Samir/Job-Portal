@@ -57,17 +57,17 @@ dispatch(fetchSingleJob(jobId));
   }, [dispatch, error, message, jobId, user]);
 
   let qualifications = [];
-  let responsibilites = [];
-  let offering = [];
+  let responsibilities = [];
+  let offers = [];
 
   if(singleJob.qualifications) {
     qualifications = singleJob.qualifications.split(". ");
   }
-  if(singleJob.responsibilites) {
-    responsibilites = singleJob.responsibilites.split(". ");
+  if(singleJob.responsibilities) {
+    responsibilities = singleJob.responsibilities.split(". ");
   }
   if(singleJob.offers) {
-    offering = singleJob.offers.split(". ")
+    offers = singleJob.offers.split(". ")
   }
 
   const resumeHandler = (e) => {
@@ -108,15 +108,22 @@ dispatch(fetchSingleJob(jobId));
         <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
       </div>   
 
-      <div>
-        <label>Cover Letter</label>
-        <textarea value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)} rows={10} />
-      </div>    
-
-      <div>
-        <label>Resume</label>
-        <input type="file" onChange={resumeHandler} />
-      </div>    
+      {user && user.role === "Job Seeker" && (
+            <>
+              <div>
+                <label>Coverletter</label>
+                <textarea
+                  value={coverLetter}
+                  onChange={(e) => setCoverLetter(e.target.value)}
+                  rows={10}
+                />
+              </div>
+              <div>
+                <label>Resume</label>
+                <input type="file" onChange={resumeHandler} />
+              </div>
+            </>
+          )}
 
       {isAutheticated && user.role === "Job Seeker" && (
          <div style={{alignItems: "flex-end"}}>
@@ -159,15 +166,78 @@ dispatch(fetchSingleJob(jobId));
                 <span>{singleJob.jobType}</span>
               </div>
             </div>
-            <hr />
+            </div>
+            <hr/>
             <div className="wrapper">
               <h3>Location</h3>
-              <div className="location">
-                <FaLocationDot />
-              </div>
+                <div className="location-wrapper">
+                  <FaLocationDot />
+                  <span>
+                    {singleJob.location}
+                  </span>
+                </div>
             </div>
-          </div>
+            <hr />
+            <div className="wrapper">
+              <h3>Full Job Description</h3>
+              <p>{singleJob.introduction}</p>
+              {
+                singleJob.qualifications && (
+                  <div>
+                    <h4>Qualifications</h4>
+                    <ul>
+                      {
+                        qualifications.map((element) => {
+                          return(
+                            <li key={element} style={{listStyle: "inside"}}>{element}</li> 
+                          )
+
+                        })
+                      }
+                    </ul>
+                  </div>
+                )}
+               {
+                singleJob.responsibilities && (
+                  <div>
+                    <h4>Responsibilities</h4>
+                    <ul>
+                      {
+                        responsibilities.map((element) => {
+                          return(
+                            <li key={element} style={{listStyle: "inside"}}>{element}</li> 
+                          )
+
+                        })
+                      }
+                    </ul>
+                  </div>
+                )
+              }
+               {
+                singleJob.offers && (
+                  <div>
+                    <h4>offers</h4>
+                    <ul>
+                      {
+                        offers.map(element => {
+                          return(
+                            <li key={element} style={{listStyle: "inside"}}>{element}</li> 
+                          )
+
+                        })
+                      }
+                    </ul>
+                  </div>
+                )
+              }
+            </div>
         </section>
+        <hr />
+        <footer>
+          <h3>Job Niche</h3>
+          <p>{singleJob.jobNiche}</p>
+        </footer>
     </div>
   </article>
     </>
