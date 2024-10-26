@@ -1,18 +1,18 @@
-import React from 'react'
-import {LuUserPlus} from "react-icons/lu"
-import {VscTasklist} from "react-icons/vsc"
-import {BiSolidLike} from "react-icons/bi"
+
+import {LuUserPlus} from "react-icons/lu";
+import {VscTasklist} from "react-icons/vsc";
+import {BiSolidLike} from "react-icons/bi";
 const HowItWorks = () => {
   return (
-    <div>
+    
       <section className='howItWorks'>
         <h3>How does it work?</h3>
         <div className="container">
           <div className="card">
             <div className="icon">
-                    <LuUserPlus/>
+              <LuUserPlus/>
             </div>
-            <h4>Post or Browse Jobs</h4>
+            <h4>Create an account</h4>
             <p>
             Sign up for a free account as a job seeker or employer. Set up your
             profile in minutes to start posting jobs or applying for jobs.
@@ -43,8 +43,8 @@ const HowItWorks = () => {
           </div>
         </div>
       </section>
-    </div>
+   
   )
 }
 
-export default HowItWorks
+export default HowItWorks;

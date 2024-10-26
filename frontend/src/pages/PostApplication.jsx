@@ -1,12 +1,13 @@
 
 import { useEffect, useState } from 'react';
 import { useSelector , useDispatch} from 'react-redux'
-import {useNavigate, useParams} from "react-router-dom"
+import {useNavigate, useParams, Link} from "react-router-dom"
 import { postApplication, clearAllApplicationErrors, resetApplicationSlice } from '../../store/slices/applicationSlice';
 import { fetchSingleJob } from '../../store/slices/jobSlice';
 import {toast} from "react-toastify"
+
 const PostApplication = () => {
-  const {singleJob} = useSelector((state) => state.jobs)
+  const {singleJob} = useSelector((state) => state.jobs);
   const {isAutheticated, user} = useSelector((state) => state.user);
   const {loading, error, message} = useSelector((state) => state.applications);
   
@@ -36,7 +37,8 @@ const PostApplication = () => {
     dispatch(postApplication(formData, jobId));
 
   };
-  useEffect(() => {
+
+useEffect(() => {
 if(error) {
   toast.error(error);
   dispatch(clearAllApplicationErrors());
@@ -56,10 +58,10 @@ dispatch(fetchSingleJob(jobId));
   let offering = [];
 
   if(singleJob.qualifications) {
-    qualifications = singleJob.qualifications.split(". ")
+    qualifications = singleJob.qualifications.split(". ");
   }
   if(singleJob.responsibilites) {
-    responsibilites = singleJob.responsibilites.split(". ")
+    responsibilites = singleJob.responsibilites.split(". ");
   }
   if(singleJob.offers) {
     offering = singleJob.offers.split(". ")
@@ -80,48 +82,53 @@ dispatch(fetchSingleJob(jobId));
       <div>
         <label>Job Title</label>
         <input type="text" placeholder={singleJob.title} disabled />
+        {
+          console.log(singleJob.title)
+        }
       </div>
 
       <div>
         <label>Your Name</label>
-        <input type="text" value={name} onChange={(e)=>setName(e.target.value)} />
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
       </div>
 
       <div>
         <label>Your Email</label>
-        <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
 
       <div>
         <label>Phone Number</label>
-        <input type="number" value={phone} onChange={(e)=>setPhone(e.target.value)} />
+        <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
       </div>
 
       <div>
         <label>Address</label>
-        <input type="text" value={address} onChange={(e)=>setAddress(e.target.value)} />
+        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
       </div>   
 
       <div>
         <label>Cover Letter</label>
-        <textarea value={coverLetter} onChange={(e)=>setCoverLetter(e.target.value)} rows={10} />
+        <textarea value={coverLetter} onChange={(e) => setCoverLetter(e.target.value)} rows={10} />
       </div>    
 
       <div>
         <label>Resume</label>
         <input type="file" onChange={resumeHandler} />
       </div>    
-      
-      <div style={{alignItems: "flex-end"}}>
-        <button className='btn' onClick={handlePostApplication} disabled={loading} >
-          Apply
-        </button>
-      </div>
 
+      {isAutheticated && user.role === "Job Seeker" && (
+         <div style={{alignItems: "flex-end"}}>
+         <button className='btn' onClick={handlePostApplication} disabled={loading} >
+           Apply
+         </button>
+       </div>
+      )}
+      
     </form>
   </article>
     </>
   )
 }
 
-export default PostApplication
+export default PostApplication;

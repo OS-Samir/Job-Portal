@@ -31,7 +31,7 @@ const Jobs = () => {
       dispatch(clearAllJobErrors())
     }
     dispatch (fetchJobs(city, niche, searchKeyword));
-    console.log(jobs);
+    // console.log(jobs);
   }, [dispatch, error, city, niche]);
 
   const handleSearch = () => {
@@ -62,7 +62,7 @@ const Jobs = () => {
     "Bhadrapur",
     "Gaighat",
     "Gorkha"
-  ]
+  ];
 
   const niches = [
     "Frontend Developer",
@@ -109,8 +109,7 @@ const Jobs = () => {
     "Product Manager",
     "AI Engineer",
     "Robotics Engineer",
-
-  ]
+  ];  
 
   return (
     <>
@@ -123,6 +122,7 @@ const Jobs = () => {
               type="text"
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
+              autoComplete="off"
             />
             <button onClick={handleSearch}>Find Job</button>
             <FaSearch />

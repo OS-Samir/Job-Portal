@@ -62,7 +62,7 @@ const jobSlice = createSlice({
 export const fetchJobs = (city, niche, searchKeyword = "") => async(dispatch) => {
     try {
         dispatch(jobSlice.actions.requestForAllJobs());
-        let link = "http://localhost:3000/api/v1/job/getall?"
+        let link = "http://localhost:3000/api/v1/job/getall?";
         let queryParams = [];
         if(searchKeyword){
             queryParams.push(`searchKeyword = ${searchKeyword}`);
@@ -99,7 +99,7 @@ export const clearAllJobErrors = () => (dispatch) => {
     dispatch(jobSlice.actions.clearAllErrors());
 }   
 
-export const resetJobSlice = () => () => {
+export const resetJobSlice = () => (dispatch) => {
     dispatch(jobSlice.actions.resetJobSlice());
 }
 

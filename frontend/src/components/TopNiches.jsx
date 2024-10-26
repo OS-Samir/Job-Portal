@@ -1,4 +1,3 @@
-import React from 'react'
 
 const TopNiches = () => {
   const services = [
@@ -41,10 +40,10 @@ const TopNiches = () => {
   ]
   return (
    <section className='services'>
-    <h3>TOp niches</h3>
+    <h3>Top niches</h3>
     <div className='grid'>
     {
-      services.map(element=> {
+      services.map((element) => {
         return (
           <div className='card' key={element.id}>
             <h4>{element.service}</h4>
@@ -58,4 +57,4 @@ const TopNiches = () => {
   )
 }
 
-export default TopNiches
+export default TopNiches;

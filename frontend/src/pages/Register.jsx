@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -133,7 +133,7 @@ const Register = () => {
           <div className="header">
             <h3>Create a new account</h3>
           </div>
-          <form onSubmit={handleRegsiter}>
+          <form onSubmit={handleRegister}>
             <div className="wrapper">
               <div className="inputTag">
                 <label>Register As</label>
@@ -225,7 +225,7 @@ const Register = () => {
                         onChange={(e) => setFirstNiche(e.target.value)}
                       >
                         <option value="">Your Niche</option>
-                        {nichesArray.map((niche, index) => {
+                        {niches.map((niche, index) => {
                           return (
                             <option key={index} value={niche}>
                               {niche}
@@ -244,7 +244,7 @@ const Register = () => {
                         onChange={(e) => setSecondNiche(e.target.value)}
                       >
                         <option value="">Your Niche</option>
-                        {nichesArray.map((niche, index) => {
+                        {niches.map((niche, index) => {
                           return (
                             <option key={index} value={niche}>
                               {niche}
@@ -263,7 +263,7 @@ const Register = () => {
                         onChange={(e) => setThirdNiche(e.target.value)}
                       >
                         <option value="">Your Niche</option>
-                        {nichesArray.map((niche, index) => {
+                        {niches.map((niche, index) => {
                           return (
                             <option key={index} value={niche}>
                               {niche}

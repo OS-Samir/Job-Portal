@@ -129,7 +129,7 @@ export const clearAllApplicationErrors = () => (dispatch) => {
     dispatch(applicationSlice.actions.clearAllErrors());
 }   
 
-export const resetApplicationSlice = () => () => {
+export const resetApplicationSlice = () => (dispatch) => {
     dispatch(applicationSlice.actions.resetApplicationSlice());
 }
 

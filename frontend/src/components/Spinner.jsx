@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {ClipLoader} from "react-spinners"
 
 const Spinner = () => {
@@ -11,4 +11,4 @@ const Spinner = () => {
   )
 }
 
-export default Spinner
+export default Spinner;
