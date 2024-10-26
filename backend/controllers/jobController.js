@@ -6,7 +6,6 @@ import { Job } from "../models/jobSchema.js";
 
 export const postJob = catchAsyncErrors(async (req, res, next) => {
   const {
-    
     title,
     jobType,
     location,
@@ -80,7 +79,7 @@ export const getAllJobs = catchAsyncErrors(async (req, res, next) => {
   if (niche) {
     query.jobNiche = niche;
   }
-  if (searchKeyword) {
+  if (searchKeyword ) {
     query.$or = [
       { title: { $regex: searchKeyword, $options: "i" } },
       { companyName: { $regex: searchKeyword, $options: "i" } },
