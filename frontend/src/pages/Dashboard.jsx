@@ -18,7 +18,7 @@ import UpdateProfile from '../components/UpdateProfile';
 
 const Dashboard = () => {
   const [show, setShow] = useState(false);
-  const [componentName, setComponentName] = useState("");
+  const [componentName, setComponentName] = useState("My Profile");
 
   const {loading, isAuthenticated, error, user} = useSelector((state) => state.user);
 
