@@ -12,7 +12,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const {loading, isAuthenticated, error} = useSelector((state) => state.user)
+  const {loading, isAuthenticated, error} = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
@@ -23,7 +24,8 @@ const Login = () => {
     formData.append("email", email);
     formData.append("password", password);
     dispatch(login(formData));
-  }
+  };
+
   useEffect(()=> {
     if(error){
       toast.error(error);
@@ -32,7 +34,8 @@ const Login = () => {
     if(isAuthenticated) {
       navigateTo("/");
     }
-  }, [dispatch, error, loading, isAuthenticated])
+  }, [dispatch, error, loading, isAuthenticated]);
+
   return (
   <>
   <section className='authPage'>
@@ -48,7 +51,6 @@ const Login = () => {
                       <option value="">Select Role</option>
                       <option value="Employer">Login as an employer</option>
                       <option value="Job Seeker">Loginas a job seeker</option>
-
                     </select>
                    <FaRegUser />
                   </div>

@@ -1,12 +1,12 @@
 
 import { useEffect, useState } from 'react';
-import { useSelector , useDispatch} from 'react-redux'
-import {useNavigate, useParams, Link} from "react-router-dom"
+import { useSelector , useDispatch} from 'react-redux';
+import {useNavigate, useParams, Link} from "react-router-dom";
 import { postApplication, clearAllApplicationErrors, resetApplicationSlice } from '../../store/slices/applicationSlice';
 import { fetchSingleJob } from '../../store/slices/jobSlice';
-import {toast} from "react-toastify"
-import {IoMdCash} from "react-icons/io"
-import {FaToolbox} from "react-icons/fa"
+import {toast} from "react-toastify";
+import {IoMdCash} from "react-icons/io";
+import {FaToolbox} from "react-icons/fa";
 import {FaLocationDot} from "react-icons/fa6";
 
 const PostApplication = () => {
@@ -50,7 +50,7 @@ if (message) {
   toast.success(message);
   dispatch(resetApplicationSlice());
 }
-// if((user && user.role === "Employer") || !isAutheticated) {
+// if(!isAutheticated) {
 //   navigateTo("/");
 // }
 dispatch(fetchSingleJob(jobId));
@@ -79,74 +79,76 @@ dispatch(fetchSingleJob(jobId));
   return (
     <>
   <article className='application_page'>
-    <form>
-      <h3>Application Form</h3>
-
-      <div>
-        <label>Job Title</label>
-        <input type="text" placeholder={singleJob.title} disabled />
-      
-      </div>
-
-      <div>
-        <label>Your Name</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </div>
-
-      <div>
-        <label>Your Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </div>
-
-      <div>
-        <label>Phone Number</label>
-        <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
-      </div>
-
-      <div>
-        <label>Address</label>
-        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
-      </div>   
-
-      {user && user.role === "Job Seeker" && (
-            <>
-              <div>
-                <label>Coverletter</label>
-                <textarea
-                  value={coverLetter}
-                  onChange={(e) => setCoverLetter(e.target.value)}
-                  rows={10}
-                />
-              </div>
-              <div>
-                <label>Resume</label>
-                <input type="file" onChange={resumeHandler} />
-              </div>
-            </>
-          )}
-
-      {isAutheticated && user.role === "Job Seeker" && (
-         <div style={{alignItems: "flex-end"}}>
-         <button className='btn' onClick={handlePostApplication} disabled={loading} >
-           Apply
-         </button>
-       </div>
-      )}
-      
-    </form>
+    
+        <form>
+        <h3>Application Form</h3>
+  
+        <div>
+          <label>Job Title</label>
+          <input type="text" placeholder={singleJob.title} disabled />
+        </div>
+  
+        <div>
+          <label>Your Name</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+  
+        <div>
+          <label>Your Email</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+  
+        <div>
+          <label>Phone Number</label>
+          <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        </div>
+  
+        <div>
+          <label>Address</label>
+          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
+        </div>   
+  
+        {user && user.role === "Job Seeker" && (
+              <>
+                <div>
+                  <label>Coverletter</label>
+                  <textarea
+                    value={coverLetter}
+                    onChange={(e) => setCoverLetter(e.target.value)}
+                    rows={10}
+                  />
+                </div>
+                <div>
+                  <label>Resume</label>
+                  <input type="file" onChange={resumeHandler} />
+                </div>
+              </>
+            )}
+  
+        {isAutheticated && user.role === "Job Seeker" && (
+           <div style={{alignItems: "flex-end"}}>
+           <button className='btn' onClick={handlePostApplication} disabled={loading} >
+             Apply
+           </button>
+         </div>
+        )}
+        
+      </form>
+     
+ 
 
     <div className="job-details">
       <header>
         <h3>{singleJob.title}</h3>
         {
           singleJob.personalWebsite && (
-            <Link to = {singleJob.personalWebsite.url}>
+            <Link target='_blank' to = {singleJob.personalWebsite.url}>
               {singleJob.personalWebsite.title}
             </Link>
           )
         }
         <p>{singleJob.location}</p>
-        <p>Rs. {singleJob.salary} a mothly salary</p>
+        <p>Rs.{singleJob.salary} a mothly salary</p>
       </header>
       <hr />
         <section>
@@ -190,7 +192,7 @@ dispatch(fetchSingleJob(jobId));
                         qualifications.map((element) => {
                           return(
                             <li key={element} style={{listStyle: "inside"}}>{element}</li> 
-                          )
+                          );
 
                         })
                       }
@@ -206,7 +208,7 @@ dispatch(fetchSingleJob(jobId));
                         responsibilities.map((element) => {
                           return(
                             <li key={element} style={{listStyle: "inside"}}>{element}</li> 
-                          )
+                          );
 
                         })
                       }
@@ -223,14 +225,13 @@ dispatch(fetchSingleJob(jobId));
                         offers.map(element => {
                           return(
                             <li key={element} style={{listStyle: "inside"}}>{element}</li> 
-                          )
+                          );
 
                         })
                       }
                     </ul>
                   </div>
-                )
-              }
+                )}
             </div>
         </section>
         <hr />

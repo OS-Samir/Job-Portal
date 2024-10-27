@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react"
-import {useDispatch, useSelector} from "react-redux"
-import {toast} from 'react-toastify'
-import Spinner from "../components/Spinner"
-import {FaSearch} from "react-icons/fa"
+import { useEffect, useState } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {toast} from 'react-toastify';
+import Spinner from "../components/Spinner";
+import {FaSearch} from "react-icons/fa";
 import { clearAllJobErrors, fetchJobs } from "../../store/slices/jobSlice";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 const Jobs = () => {
   const[city, setCity] = useState("");
   const[selectedCity, setSelectedCity] = useState("");
@@ -122,7 +122,7 @@ const Jobs = () => {
               type="text"
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
-              autoComplete="off"
+             
             />
             <button onClick={handleSearch}>Find Job</button>
             <FaSearch />

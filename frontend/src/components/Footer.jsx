@@ -24,8 +24,8 @@ const Footer = () => {
           <li><Link to ={"/"}>Home</Link></li>
           <li><Link to ={"/jobs"}>Jobs</Link></li>
           {
-            isAuthenticated && <li><Link to ={"/dashboard"}>Dashboard</Link></li>
-          }
+            isAuthenticated && (<li><Link to ={"/dashboard"}>Dashboard</Link></li>
+          )}
         </ul>
       </div>
       <div>
