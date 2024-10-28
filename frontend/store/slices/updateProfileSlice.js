@@ -61,5 +61,7 @@ export const updateProfile = (data) => async (dispatch) => {
         }
 };
 
-
+export const clearAllUpdateProfileErrors = () => (dispatch) => {
+    dispatch(updateProfileSlice.actions.profileResetAfterUpdate());
+}
 export default updateProfileSlice.reducer;
