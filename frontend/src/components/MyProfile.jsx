@@ -40,7 +40,7 @@ const MyProfile = () => {
         </div>
         <div>
             <label>Joined On</label>
-            <input type="text" disabled value={user && user.createdAt.substring(0, 10)} onChange={(e) => e.target.value} />
+            <input type="text" disabled value={user && user.createdAt} onChange={(e) => e.target.value} />
         </div>
     </div>
   )

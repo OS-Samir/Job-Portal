@@ -40,8 +40,6 @@ const updateProfileSlice = createSlice({
                 state.error = null;
                 state.isUpdated = false;
                 state.loading = false;
-
-
        },
 
     }
@@ -51,7 +49,7 @@ const updateProfileSlice = createSlice({
 export const updateProfile = (data) => async (dispatch) => {
         dispatch(updateProfileSlice.actions.updateProfileRequest());
         try {
-            const response = await axios.put("", data, {
+            const response = await axios.put("http://localhost:3000/api/v1/user/update/profile", data, {
                 withCredentials: true,
                 headers: {"Content-Type" : "multipart/form-data"}  
             });
@@ -60,6 +58,22 @@ export const updateProfile = (data) => async (dispatch) => {
             dispatch(updateProfileSlice.actions.updateProfileFailed(error.response.data.message || "Failed to update profile"));
         }
 };
+
+
+export const updatePassword = (data) => async (dispatch) => {
+    dispatch(updateProfileSlice.actions.updatePasswordRequest());
+    try {
+        const response = await axios.put("http://localhost:3000/api/v1/user/update/password", data, {
+            withCredentials: true,
+            headers: {"Content-Type" : "application/json"}  
+        });
+        dispatch(updateProfileSlice.actions.updatePasswordSuccess());
+    } catch (error) {
+        console.log(error);
+        dispatch(updateProfileSlice.actions.updateProfileFailed(error.response.data.message || "Failed to update password"));
+    }
+};
+
 
 export const clearAllUpdateProfileErrors = () => (dispatch) => {
     dispatch(updateProfileSlice.actions.profileResetAfterUpdate());
