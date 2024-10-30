@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
 import { clearAllUpdateProfileErrors, updateProfile } from '../../store/slices/updateProfileSlice';
-import { isAction } from '@reduxjs/toolkit';
-import { LuRows } from 'react-icons/lu';
 import { toast } from 'react-toastify';
 import {getUser} from "../../store/slices/userSlice"
 
@@ -36,9 +34,7 @@ const UpdateProfile = () => {
     if(user && user.role === "Job Seeker"){
         formData.append("firstNiche", firstNiche);
         formData.append("secondNiche", secondNiche);
-        formData.append("secondNiche", secondNiche);
-        formData.append("secondNiche", secondNiche);
-
+        formData.append("thirdNiche", thirdNiche);
     }
 
     if (resume) {

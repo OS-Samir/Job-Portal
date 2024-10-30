@@ -67,7 +67,25 @@ const applicationSlice = createSlice({
             state.message = null;
             state.loading = false;
 
-        }
+        },
+        
+        requestForDeleteApplication(state, action) {
+            state.loading = true;
+            state.error = null;
+            state.message = null;
+        },
+        successForDeleteApplication(state, action) {
+            state.loading = false;
+            state.error = null;
+            state.message = action.payload;  
+        },
+        failureForDeleteApplication(state, action) {
+            state.loading = false;
+            state.error = action.payload;
+            state.message = null;
+            
+        },
+
  
     }
 });
@@ -123,7 +141,19 @@ export const postApplication = (data, jobId) => async(dispatch) => {
         catch (error) {
             dispatch (applicationSlice.actions.failureForPostApplication(error.response.data.message));
         }
-}
+};
+
+export const deleteApplication = (id) => async(dispatch)=> {
+    dispatch(applicationSlice.actions.requestForDeleteApplication());
+    try {
+       const response = await axios.delete(`http://localhost:3000/api/v1/application/delete/${id}`, {withCredentials: true});
+       dispatch(applicationSlice.actions.successForDeleteApplication(response.data.message));
+       dispatch(clearAllApplicationErrors());
+    } catch (error) {
+        dispatch(applicationSlice.actions.failureForDeleteApplication(error.response.data.message));
+    }
+};
+
 
 export const clearAllApplicationErrors = () => (dispatch) => {
     dispatch(applicationSlice.actions.clearAllErrors());

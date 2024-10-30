@@ -69,8 +69,8 @@ export const updatePassword = (data) => async (dispatch) => {
         });
         dispatch(updateProfileSlice.actions.updatePasswordSuccess());
     } catch (error) {
-        console.log(error);
-        dispatch(updateProfileSlice.actions.updateProfileFailed(error.response.data.message || "Failed to update password"));
+       
+        dispatch(updateProfileSlice.actions.updatePasswordFailed(error.response.data.message || "Failed to update password"));
     }
 };
 
