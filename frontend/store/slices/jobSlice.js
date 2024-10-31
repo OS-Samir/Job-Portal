@@ -55,8 +55,23 @@ const jobSlice = createSlice({
             state.singleJob = state.singleJob;
             state.error = action.payload;
             state.loading = false;
-        }
-
+        },
+        requestForPostJob(state, action) {
+            state.message = null;
+            state.error = null;
+            state.loading = true;
+        },
+        successForPostJob(state, action) {
+            state.message = action.payload;
+            state.error = null;
+            state.loading = false;
+        },
+        failureForPostJob(state, action) {
+            state.message = null;
+            state.error = action.payload;
+            state.loading = false;
+        },
+       
     },
 });
 export const fetchJobs =
@@ -95,6 +110,27 @@ export const fetchSingleJob = (jobId) => async(dispatch) => {
         dispatch(jobSlice.actions.failureForSingleJob(error.response.data.message));
     } 
 }
+
+export const postJob = () => async(dispatch) => {
+    dispatch(jobSlice.actions.requestForPostJob());
+    try {
+        const response = await axios.post(`http://localhost:3000/api/v1/job/post`, data, {withCredentials: true, headers: {"Content-Type": "application/json"}});
+        dispatch(jobSlice.actions.successForPostJob(response.data.message));
+        dispatch(jobSlice.actions.clearAllErrors());
+    } catch (error) {
+        dispatch(jobSlice.actions.failureForPostJob(error.response.data.message));
+    } 
+}
+
+
+
+
+
+
+
+
+
+
 
 export const clearAllJobErrors = () => (dispatch) => {
     dispatch(jobSlice.actions.clearAllErrors());
