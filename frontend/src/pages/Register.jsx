@@ -20,70 +20,64 @@ const Register = () => {
   const [coverLetter, setCoverLetter] = useState("");
   const [resume, setResume] = useState("");
 
-
   const niches = [
-    "Frontend Developer",
-    "Backend Developer",
-    "Full Stack Developer",
-    "Mobile App Developer",
-    "DevOps Engineer",
-    "Cloud Engineer",
-    "Embedded Systems Engineer",
-    "Data Scientist",
-    "Data Analyst",
-    "Data Engineer",
-    "Machine Learning Engineer",
-    "Business Intelligence (BI) Analyst",
-    "AI/Deep Learning Specialist",
-    "Cybersecurity Analyst",
-    "Penetration Tester",
-    "Security Engineer",
-    "Incident Response Analyst",
-    "Network Security Administrator",
-    "Ethical Hacker",
-    "Database Administrator (DBA)",
-    "Data Architect",
-    "SQL Developer",
-    "Big Data Engineer",
-    "Cloud Solutions Architect",
-    "Cloud Security Engineer",
-    "Cloud DevOps Engineer",
-    "Cloud Network Engineer",
-    "Network Administrator",
-    "Systems Administrator",
-    "IT Support Specialist",
-    "Network Engineer",
-    "Infrastructure Engineer",
-    "Telecommunications Engineer",
-    "Web Developer",
-    "UX/UI Designer",
-    "Web Designer",
-    "WordPress Developer",
-    "IT Project Manager",
-    "Technical Support Engineer",
-    "IT Consultant",
-    "IT Service Manager",
-    "Product Manager",
-    "AI Engineer",
-    "Robotics Engineer",
-    "Automation Engineer",
-    "NLP Specialist",
-    "Blockchain Developer",
-    "Blockchain Architect",
-    "Cryptography Engineer",
-    "QA Engineer",
-    "Software Tester",
-    "Test Automation Engineer",
-    "Technical Sales Engineer",
-    "IT Marketing Specialist",
-    "IT Business Analyst",
-    "Game Developer",
-    "Game Designer",
-    "Game Programmer",
-    "AR Developer",
-    "VR Developer",
-    "XR (Extended Reality) Engineer"
+    "Software Developer",
+  "Frontend Developer",
+  "Backend Developer",
+  "Full Stack Developer",
+  "Mobile App Developer",
+  "Game Developer",
+  "DevOps Engineer",
+  "Data Scientist",
+  "Data Analyst",
+  "Machine Learning Engineer",
+  "Business Intelligence Analyst",
+  "Data Engineer",
+  "Security Analyst",
+  "Penetration Tester (Ethical Hacker)",
+  "Security Engineer",
+  "Chief Information Security Officer (CISO)",
+  "Incident Responder",
+  "Cloud Architect",
+  "Cloud Engineer",
+  "Cloud Security Specialist",
+  "Cloud Solutions Architect",
+  "Database Administrator (DBA)",
+  "Data Architect",
+  "SQL Developer",
+  "Big Data Engineer",
+  "Network Administrator",
+  "Network Engineer",
+  "Systems Administrator",
+  "Systems Engineer",
+  "IT Support Specialist",
+  "IT Project Manager",
+  "Scrum Master",
+  "Product Manager",
+  "Agile Coach",
+  "AI Developer",
+  "AI Research Scientist",
+  "Robotics Engineer",
+  "Natural Language Processing (NLP) Specialist",
+  "QA Engineer",
+  "Automation Tester",
+  "Manual Tester",
+  "Performance Tester",
+  "UI Designer",
+  "UX Designer",
+  "UX Researcher",
+  "Interaction Designer",
+  "IT Consultant",
+  "Systems Analyst",
+  "Technology Consultant",
+  "Technical Writer",
+  "Documentation Specialist",
+  "Instructional Designer",
+  "AR/VR Developer",
+  "3D Artist",
+  "AR/VR UX Designer"
   ];
+
   const resumeHandler = (e) => {
     const file = e.target.files[0];
     setResume(file);
@@ -96,7 +90,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegsiter = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("role", role);
@@ -114,7 +108,7 @@ const Register = () => {
     }
     dispatch(register(formData));
   };
-  // console.log(formData);
+
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -125,7 +119,6 @@ const Register = () => {
     }
   }, [dispatch, error, loading, isAuthenticated, message]);
 
-
   return (
     <>
       <section className="authPage">
@@ -133,7 +126,7 @@ const Register = () => {
           <div className="header">
             <h3>Create a new account</h3>
           </div>
-          <form onSubmit={handleRegister}>
+          <form onSubmit={handleRegsiter}>
             <div className="wrapper">
               <div className="inputTag">
                 <label>Register As</label>

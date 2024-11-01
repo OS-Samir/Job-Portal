@@ -11,26 +11,27 @@ const UpdatePassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-
-  const {loading, error, isUpdated} = useSelector((state) => state.updateProfile);
+  const { loading, error, isUpdated } = useSelector(
+    (state) => state.updateProfile
+  );
 
   const dispatch = useDispatch();
 
-
-  const handleUpdatePasssword = () => {
+  const handleUpdatePassword = () => {
     const formData = new FormData();
     formData.append("oldPassword", oldPassword);
     formData.append("newPassword", newPassword);
     formData.append("confirmPassword", confirmPassword);
     dispatch(updatePassword(formData));
   };
-  useEffect(()=> {
-    if(error){
+
+  useEffect(() => {
+    if (error) {
       toast.error(error);
       dispatch(clearAllUpdateProfileErrors());
-      
-      if(isUpdated){
-        toast.success("Password updated successfully");
+      console.log(error);
+      if (isUpdated) {
+        toast.success("Password Updated");
         dispatch(getUser());
         dispatch(clearAllUpdateProfileErrors());
       }
@@ -38,12 +39,15 @@ const UpdatePassword = () => {
   }, [dispatch, loading, error, isUpdated]);
 
   return (
-    <div className='account_components update_password_component'>
-
+    <div className="account_components update_password_component">
       <h3>Update Password</h3>
       <div>
         <label>Current Password</label>
-        <input type= {showPassword ? "text": "password" } value={oldPassword} onChange={(e)=> setOldPassword(e.target.value)} />
+        <input
+          type={showPassword ? "text" : "password"}
+          value={oldPassword}
+          onChange={(e) => setOldPassword(e.target.value)}
+        />
         {showPassword ? (
           <FaRegEyeSlash
             className="eye_icon"
@@ -56,10 +60,13 @@ const UpdatePassword = () => {
           />
         )}
       </div>
-
       <div>
         <label>New Password</label>
-        <input type= {showPassword ? "text": "password" } value={newPassword} onChange={(e)=> setNewPassword(e.target.value)} />
+        <input
+          type={showPassword ? "text" : "password"}
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
         {showPassword ? (
           <FaRegEyeSlash
             className="eye_icon"
@@ -72,10 +79,13 @@ const UpdatePassword = () => {
           />
         )}
       </div>
-
       <div>
         <label>Confirm Password</label>
-        <input type= {showPassword ? "text": "password" } value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)} />
+        <input
+          type={showPassword ? "text" : "password"}
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
         {showPassword ? (
           <FaRegEyeSlash
             className="eye_icon"
@@ -88,16 +98,16 @@ const UpdatePassword = () => {
           />
         )}
       </div>
-      <div className='save_change_btn_wrapper'>
-          <button className='btn' onClick={handleUpdatePasssword} disabled={loading}>
-            Update Password
-          </button>
+      <div className="save_change_btn_wrapper">
+        <button
+          className="btn"
+          onClick={handleUpdatePassword}
+          disabled={loading}
+        >
+          Update Password
+        </button>
       </div>
-      
     </div>
-
-    
-  )
-}
-
+  );
+};
 export default UpdatePassword

@@ -6,13 +6,13 @@ import {FaSearch} from "react-icons/fa";
 import { clearAllJobErrors, fetchJobs } from "../../store/slices/jobSlice";
 import {Link} from "react-router-dom";
 const Jobs = () => {
-  const[city, setCity] = useState("");
-  const[selectedCity, setSelectedCity] = useState("");
-  const[niche, setNiche] = useState("");
-  const[selectedNiche, setSelectedNiche] = useState("");
-  const[searchKeyword, setSearchKeyword] = useState("");
+  const [city, setCity] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [niche, setNiche] = useState("");
+  const [selectedNiche, setSelectedNiche] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("");
 
-  const {jobs, loading, error} = useSelector((state) => state.jobs);
+  const { jobs, loading, error } = useSelector((state) => state.jobs);
 
   const handleCityChange = (city) => {
     setCity(city);
@@ -25,91 +25,109 @@ const Jobs = () => {
 
   const dispatch = useDispatch();
 
-  useEffect (()=> {
+  useEffect(() => {
     if (error) {
       toast.error(error);
-      dispatch(clearAllJobErrors())
+      dispatch(clearAllJobErrors());
     }
-    dispatch (fetchJobs(city, niche, searchKeyword));
-    // console.log(jobs);
+    dispatch(fetchJobs(city, niche, searchKeyword));
   }, [dispatch, error, city, niche]);
 
   const handleSearch = () => {
     dispatch(fetchJobs(city, niche, searchKeyword));
-  }
+  };
 
   const cities = [
     "Kathmandu",
     "Pokhara",
-    "Chitwan",
-    "Itahari",
     "Lalitpur",
-    "Janakpur",
-    "Sindhuli",
-    "Dharan",
-    "Birgunj",
-    "Dhangadhi",
-    "Nepalgunj",
     "Bhaktapur",
+    "Biratnagar",
+    "Birgunj",
+    "Dharan",
+    "Butwal",
+    "Bharatpur",
+    "Hetauda",
+    "Nepalgunj",
+    "Itahari",
+    "Janakpur",
+    "Dhangadhi",
+    "Tulsipur",
     "Ghorahi",
-    "Baglung",
-    "Tansen",
-    "Ilam",
-    "Birendranagar",
-    "Banepa",
-    "Tikapur",
-    "Inaruwa",
+    "Damak",
     "Bhadrapur",
-    "Gaighat",
-    "Gorkha"
+    "Rajbiraj",
+    "Lahan",
+    "Gorkha",
+    "Siddharthanagar",
+    "Panauti",
+    "Baglung",
+    "Dhankuta",
+    "Surkhet",
+    "Palpa",
+    "Tikapur",
+    "Kirtipur",
+    "Tansen",
+    "Putalibazar"
   ];
 
   const niches = [
+    "Software Developer",
     "Frontend Developer",
     "Backend Developer",
     "Full Stack Developer",
     "Mobile App Developer",
+    "Game Developer",
     "DevOps Engineer",
-    "Cloud Engineer",
-    "Embedded Systems Engineer",
     "Data Scientist",
     "Data Analyst",
-    "Data Engineer",
     "Machine Learning Engineer",
-    "Business Intelligence (BI) Analyst",
-    "AI/Deep Learning Specialist",
-    "Cybersecurity Analyst",
-    "Penetration Tester",
+    "Business Intelligence Analyst",
+    "Data Engineer",
+    "Security Analyst",
+    "Penetration Tester (Ethical Hacker)",
     "Security Engineer",
-    "Incident Response Analyst",
-    "Network Security Administrator",
-    "Ethical Hacker",
+    "Chief Information Security Officer (CISO)",
+    "Incident Responder",
+    "Cloud Architect",
+    "Cloud Engineer",
+    "Cloud Security Specialist",
+    "Cloud Solutions Architect",
     "Database Administrator (DBA)",
     "Data Architect",
     "SQL Developer",
     "Big Data Engineer",
-    "Cloud Solutions Architect",
-    "Cloud Security Engineer",
-    "Cloud DevOps Engineer",
-    "Cloud Network Engineer",
     "Network Administrator",
-    "Systems Administrator",
-    "IT Support Specialist",
     "Network Engineer",
-    "Infrastructure Engineer",
-    "Telecommunications Engineer",
-    "Web Developer",
-    "UX/UI Designer",
-    "Web Designer",
-    "WordPress Developer",
+    "Systems Administrator",
+    "Systems Engineer",
+    "IT Support Specialist",
     "IT Project Manager",
-    "Technical Support Engineer",
-    "IT Consultant",
-    "IT Service Manager",
+    "Scrum Master",
     "Product Manager",
-    "AI Engineer",
+    "Agile Coach",
+    "AI Developer",
+    "AI Research Scientist",
     "Robotics Engineer",
-  ];  
+    "Natural Language Processing (NLP) Specialist",
+    "QA Engineer",
+    "Automation Tester",
+    "Manual Tester",
+    "Performance Tester",
+    "UI Designer",
+    "UX Designer",
+    "UX Researcher",
+    "Interaction Designer",
+    "IT Consultant",
+    "Systems Analyst",
+    "Technology Consultant",
+    "Technical Writer",
+    "Documentation Specialist",
+    "Instructional Designer",
+    "AR/VR Developer",
+    "3D Artist",
+    "AR/VR UX Designer"
+  ];
 
   return (
     <>
@@ -122,7 +140,6 @@ const Jobs = () => {
               type="text"
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
-             
             />
             <button onClick={handleSearch}>Find Job</button>
             <FaSearch />
@@ -225,5 +242,6 @@ const Jobs = () => {
     </>
   );
 };
+
 
 export default Jobs

@@ -1,14 +1,14 @@
 
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { FaSquareXTwitter, FaSquareInstagram, FaLinkedin, FaGithub} from "react-icons/fa6"
+import {  FaSquareInstagram, FaLinkedin, FaGithub} from "react-icons/fa6"
 const Footer = () => {
   const {isAuthenticated} = useSelector((state) => state.user);
   return (
     <>
     <footer>
       <div>
-        <img src="/lgo.png" alt="A logo" />
+        <img src="/logo.png" style={{borderRadius: "50%", width: "120px"}} draggable="false" alt="A logo" />
       </div>
       <div>
         <h4>Support</h4>
@@ -31,26 +31,21 @@ const Footer = () => {
       <div>
         <h4>Follow us</h4>
         <ul>
+          
           <li>
-          <Link to={"/"}>
-            <span><FaSquareXTwitter /></span>
-            <span>Twitter</span>
-          </Link>
-          </li>
-          <li>
-          <Link to={"/"}>
+          <Link to={""}>
             <span><FaSquareInstagram /></span>
             <span>Instagram</span>
           </Link>
           </li> 
           <li>
-          <Link to={"/"}>
+          <Link to={""}>
             <span><FaLinkedin /></span>
             <span>LinkedIn</span>
           </Link>
           </li>
           <li>
-          <Link to={"/"}>
+          <Link to={""}>
             <span><FaGithub /></span>
             <span>Github</span>
           </Link>

@@ -9,7 +9,6 @@ const applicationSlice = createSlice({
         loading: false,
         error: null,
         message: null,
-        // myApplications: []
     },
 
     reducers: {
@@ -58,12 +57,11 @@ const applicationSlice = createSlice({
         clearAllErrors(state, action) {
             state.error = null;
             state.applications = state.applications;
-            // state.myApplications = state.myApplications;
+          
         },
         resetApplicationSlice(state, action) {
             state.error = null;
             state.applications = state.applications;
-            // state.myApplications = state.myApplications;
             state.message = null;
             state.loading = false;
 

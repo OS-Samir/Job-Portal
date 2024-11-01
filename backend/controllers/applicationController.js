@@ -44,7 +44,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
                   folder: "Job_Seekers_Resume",
                 //   resource_type: "raw"
               },
-              console.log(cloudinaryResponse)
+              
           );
           if (!cloudinaryResponse || cloudinaryResponse.error) {
               return next(new ErrorHandler("Failed to upload resume to cloudinary.", 500));
@@ -55,7 +55,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
           };
           
       } catch (error) {
-        console.error(error.message);
+        
           return next(new ErrorHandler("Failed to upload resume", 500));
       }
   } else {

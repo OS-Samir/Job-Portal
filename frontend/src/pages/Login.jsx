@@ -12,7 +12,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const {loading, isAuthenticated, error} = useSelector((state) => state.user);
+  const { loading, isAuthenticated, error } = useSelector(
+    (state) => state.user
+  );
 
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
@@ -26,56 +28,69 @@ const Login = () => {
     dispatch(login(formData));
   };
 
-  useEffect(()=> {
-    if(error){
+  useEffect(() => {
+    if (error) {
       toast.error(error);
       dispatch(clearAllUserErrors());
     }
-    if(isAuthenticated) {
+    if (isAuthenticated) {
       navigateTo("/");
     }
   }, [dispatch, error, loading, isAuthenticated]);
 
   return (
-  <>
-  <section className='authPage'>
-      <div className="container login-container">
+    <>
+      <section className="authPage">
+        <div className="container login-container">
           <div className="header">
-            <h3>login to your account</h3>
+            <h3>Login to your account</h3>
           </div>
           <form onSubmit={handleLogin}>
-          <div className="inputTag">
-                  <label> Login as</label>
-                  <div>
-                    <select value={role} onChange={(e) => setRole(e.target.value)}>
-                      <option value="">Select Role</option>
-                      <option value="Employer">Login as an employer</option>
-                      <option value="Job Seeker">Loginas a job seeker</option>
-                    </select>
-                   <FaRegUser />
-                  </div>
+            <div className="inputTag">
+              <label>Login As</label>
+              <div>
+                <select value={role} onChange={(e) => setRole(e.target.value)}>
+                  <option value="">Select Role</option>
+                  <option value="Employer">Login as an Employer</option>
+                  <option value="Job Seeker">Login as a Job Seeker</option>
+                </select>
+                <FaRegUser />
+              </div>
             </div>
             <div className="inputTag">
-                  <label> Email </label>
-                  <div>
-                    <input type="email" placeholder='Your email' value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <MdOutlineMailOutline />
-                  </div>
+              <label>Email</label>
+              <div>
+                <input
+                  type="email"
+                  placeholder="youremail@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <MdOutlineMailOutline />
+              </div>
             </div>
             <div className="inputTag">
-                  <label> Password </label>
-                  <div>
-                    <input type="password" placeholder='Your password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <RiLock2Fill />
-                  </div>
+              <label>Password</label>
+              <div>
+                <input
+                  type="password"
+                  placeholder="Your Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <RiLock2Fill />
+              </div>
             </div>
-            <button type='submit' disabled={loading}>Login</button>
-            <Link to={"/register"}>Register now</Link>
+            <button type="submit" disabled={loading}>
+              Login
+            </button>
+            <Link to={"/register"}>Register Now</Link>
           </form>
-      </div>
-  </section>
-  </>
-  )
-}
+        </div>
+      </section>
+    </>
+  );
+};
+
 
 export default Login
